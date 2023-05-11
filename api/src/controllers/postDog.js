@@ -6,6 +6,7 @@ const postDog = async ({
   height,
   weight,
   life_span,
+  temperaments,
 }) => {
   newDog = await Dog.create({
     reference_image_id,
@@ -14,6 +15,9 @@ const postDog = async ({
     weight,
     life_span,
   });
+
+  newDog.addTemperaments(temperaments);
+  
   return newDog;
 };
 
