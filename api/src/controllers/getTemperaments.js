@@ -1,15 +1,31 @@
 const axios = require("axios");
-// const { Temperament } = require("../db");
+const getAllDogs = require("./getAllDogs");
+const { Temperament } = require("../db");
 
 const getTemperaments = async () => {
-  const { data } = await axios("https://api.thedogapi.com/v1/breeds");
-  console.log("Dogs: ", data.length);
-  const dogsNames = data.map((e) => e.name);
-  console.log("Names: ", dogsNames.length);
-  const dogsNamesNoRepeted = new Set(dogsNames);
-  let result = [...dogsNamesNoRepeted];
-  console.log("Result", result.length);
-  return result;
+  let temperaments = [];
+  let bulk = [];
+  // const { data } = await axios("https://api.thedogapi.com/v1/breeds");
+  const data = await getAllDogs();
+
+  data.forEach((element) => {
+    element.temperament
+      ? (temperaments = [...temperaments, ...element.temperament.split(", ")])
+      : null;
+  });
+
+  let filter = new Set(temperaments);
+  let filtered = [...filter].sort();
+
+  console.log("Filtered", filtered.length); // Eliminar.-
+
+  filtered.forEach((elem) => bulk.push({ name: elem }));
+
+  const created = await Temperament.bulkCreate(bulk);
+
+  console.log("Bulk", bulk.length); // Eliminar.-
+
+  return created;
 };
 
 module.exports = getTemperaments;
