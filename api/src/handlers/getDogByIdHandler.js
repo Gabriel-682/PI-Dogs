@@ -2,9 +2,8 @@ const { getDogById } = require("../controllers/index");
 
 const getDogByIdHandler = async (req, res) => {
   try {
-    const { idRaza } = req.params;
-    console.log(idRaza);
-    const dog = await getDogById(idRaza);
+    const { idRaza, isApi } = req.params;
+    const dog = await getDogById(idRaza, isApi);
     res.status(200).json(dog);
   } catch (error) {
     res.status(400).json({ error: error.message });

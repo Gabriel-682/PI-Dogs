@@ -16,8 +16,8 @@ const router = Router();
 //   res.status(200).json("Estás en dogs");
 // });
 router.get("/dogs", getAllDogsHandler);
-router.get("/dogs/:idRaza", getDogByIdHandler);
 router.get("/dogs/name", getDogByNameHandler);
+router.get("/dogs/:idRaza/:isApi", getDogByIdHandler);
 router.post("/dogs", postDogHandler);
 router.get("/temperaments", getTemperamentsHandler);
 
