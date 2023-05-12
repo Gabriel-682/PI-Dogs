@@ -8,6 +8,7 @@ const getDogByName = async (name, isApi) => {
     const { data } = await axios(
       `https://api.thedogapi.com/v1/breeds/search?q=${name}`
     );
+    if (data.length === 0) throw Error("No existe la raza buscada.");
     return data;
   }
   if (isApi === "db") {
