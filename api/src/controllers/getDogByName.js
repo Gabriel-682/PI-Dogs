@@ -1,4 +1,5 @@
 const axios = require("axios");
+const { Op } = require("sequelize");
 const { Dog } = require("../db");
 const { Temperament } = require("../db");
 
@@ -11,7 +12,7 @@ const getDogByName = async (name, isApi) => {
   }
   if (isApi === "db") {
     const dog = await Dog.findOne({
-      where: { name },
+      where: { name: { [Op.iLike]: `%${name}` } },
       include: {
         model: Temperament,
         attributes: ["name"],
