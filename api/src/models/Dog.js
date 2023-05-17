@@ -11,7 +11,7 @@ module.exports = (sequelize) => {
         autoIncrement: true,
         primaryKey: true,
       },
-      reference_image_id: {
+      image: {
         type: DataTypes.STRING,
         allowNull: false,
       },

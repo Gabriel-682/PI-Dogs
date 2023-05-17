@@ -1,7 +1,7 @@
 const { Dog } = require("../db");
 
 const postDog = async ({
-  reference_image_id,
+  image,
   name,
   height,
   weight,
@@ -9,7 +9,7 @@ const postDog = async ({
   temperaments,
 }) => {
   newDog = await Dog.create({
-    reference_image_id,
+    image,
     name,
     height,
     weight,
