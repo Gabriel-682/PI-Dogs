@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import DogCard from "../DogCard/DogCard";
 import axios from "axios";
 import Pagination from "../Pagination/Pagination";
+import styles from "./HomePage.module.css";
 
 function HomePage() {
   const [dogsApi, setDogsApi] = useState([]);
@@ -26,17 +27,19 @@ function HomePage() {
   return (
     <div>
       <h1>SOY HOME PAGE</h1>
-      {dogsApi
-        .map((dog) => (
-          <DogCard
-            key={dog.name}
-            image={dog.image.url}
-            name={dog.name}
-            temperament={dog.temperament}
-            weight={dog.weight.metric}
-          />
-        ))
-        .slice(firstIndex, lastIndex)}
+      <div className={styles.dogsContenedor}>
+        {dogsApi
+          .map((dog) => (
+            <DogCard
+              key={dog.name}
+              image={dog.image.url}
+              name={dog.name}
+              temperament={dog.temperament}
+              weight={dog.weight.metric}
+            />
+          ))
+          .slice(firstIndex, lastIndex)}
+      </div>
       <Pagination
         dogsPerPage={dogsPerPage}
         currentPage={currentPage}

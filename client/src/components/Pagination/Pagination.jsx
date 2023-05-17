@@ -1,3 +1,5 @@
+import styles from "./Pagination.module.css";
+
 function Pagination({ dogsPerPage, currentPage, setCurrentPage, totalDogs }) {
   const pageNumbers = [];
 
@@ -18,7 +20,7 @@ function Pagination({ dogsPerPage, currentPage, setCurrentPage, totalDogs }) {
   };
 
   return (
-    <nav>
+    <nav className={styles.paginationNav}>
       <button
         onClick={onPreviusPage}
         disabled={currentPage === 1 ? true : false}
@@ -27,8 +29,10 @@ function Pagination({ dogsPerPage, currentPage, setCurrentPage, totalDogs }) {
       </button>
       {pageNumbers.map((numPage) => (
         <button
+          className={
+            numPage === currentPage ? styles.bntPageSelected : undefined
+          }
           onClick={() => onSpecificPage(numPage)}
-          style={numPage === currentPage ? { backgroundColor: "#00B1E1" } : {}}
           key={numPage}
         >
           {numPage}

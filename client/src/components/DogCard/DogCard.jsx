@@ -1,7 +1,9 @@
+import styles from "./DogCard.module.css";
+
 function DogCard({ image, name, temperament, weight }) {
   return (
-    <div>
-      <img src={image} alt="Dog" />
+    <div className={styles.dogContenedor}>
+      <img className={styles.dogImage} src={image} alt="Dog" />
       <p>{name}</p>
       <p>{temperament}</p>
       <p>{weight}</p>
