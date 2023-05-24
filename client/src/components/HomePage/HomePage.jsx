@@ -32,10 +32,10 @@ function HomePage() {
           .map((dog) => (
             <DogCard
               key={dog.name}
-              image={dog.image.url}
+              image={dog.image}
               name={dog.name}
-              temperament={dog.temperament}
-              weight={dog.weight.metric}
+              temperament={dog.Temperaments}
+              weight={dog.weight}
             />
           ))
           .slice(firstIndex, lastIndex)}
