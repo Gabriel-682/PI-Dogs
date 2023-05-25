@@ -1,7 +1,7 @@
 import { GET_ALL_DOGS } from "./actionsTypes";
 
 const initialState = {
-  allDogs: ["Hola"],
+  allDogs: [],
 };
 
 const reducer = (state = initialState, { type, payload }) => {

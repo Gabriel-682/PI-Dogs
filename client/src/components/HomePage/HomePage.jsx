@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import DogCard from "../DogCard/DogCard";
-// import axios from "axios";
 import Pagination from "../Pagination/Pagination";
 import styles from "./HomePage.module.css";
 import { getAllDogs } from "../../redux/actions";
@@ -17,14 +16,14 @@ function HomePage() {
 
   useEffect(() => {
     dispatch(getAllDogs());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div>
       <h1>SOY HOME PAGE</h1>
       <div className={styles.dogsContenedor}>
         {dogsRender
-          ?.map((dog) => (
+          .map((dog) => (
             <DogCard
               key={dog.name}
               image={dog.image}
