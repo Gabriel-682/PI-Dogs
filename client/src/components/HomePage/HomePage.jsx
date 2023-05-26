@@ -4,6 +4,7 @@ import DogCard from "../DogCard/DogCard";
 import Pagination from "../Pagination/Pagination";
 import styles from "./HomePage.module.css";
 import { getAllDogs } from "../../redux/actions";
+import Nav from "../Nav/Nav";
 
 function HomePage() {
   const dogsRender = useSelector((state) => state.allDogs);
@@ -21,6 +22,7 @@ function HomePage() {
   return (
     <div>
       <h1>SOY HOME PAGE</h1>
+      <Nav />
       <div className={styles.dogsContenedor}>
         {dogsRender
           .map((dog) => (

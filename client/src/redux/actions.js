@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_ALL_DOGS } from "./actionsTypes";
+import { GET_ALL_DOGS, SEARCH_BY_NAME } from "./actionsTypes";
 
 export const getAllDogs = () => {
   return async (dispatch) => {
@@ -11,6 +11,22 @@ export const getAllDogs = () => {
       });
     } catch (error) {
       console.log(error);
+    }
+  };
+};
+
+export const getDogByName = (name) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios(
+        `http://localhost:3001/dogs/name?name=${name}`
+      );
+      return dispatch({
+        type: SEARCH_BY_NAME,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error.response.data);
     }
   };
 };
