@@ -1,10 +1,11 @@
+import styles from "./HomePage.module.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import DogCard from "../DogCard/DogCard";
 import Pagination from "../Pagination/Pagination";
-import styles from "./HomePage.module.css";
-import { getAllDogs } from "../../redux/actions";
 import Nav from "../Nav/Nav";
+import PreLoader from "../PreLoader/PreLoader";
+import { getAllDogs } from "../../redux/actions";
 
 function HomePage() {
   const dogsRender = useSelector((state) => state.dogsRender);
@@ -16,10 +17,12 @@ function HomePage() {
   const firstIndex = lastIndex - dogsPerPage;
 
   useEffect(() => {
-    dispatch(getAllDogs());
+    setTimeout(() => dispatch(getAllDogs()), 1000);
   }, [dispatch]);
 
-  return (
+  return !dogsRender.length ? (
+    <PreLoader />
+  ) : (
     <div>
       <h1>SOY HOME PAGE</h1>
       <Nav />
