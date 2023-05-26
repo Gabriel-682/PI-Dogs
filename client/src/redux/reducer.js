@@ -2,6 +2,7 @@ import { GET_ALL_DOGS, SEARCH_BY_NAME } from "./actionsTypes";
 
 const initialState = {
   allDogs: [],
+  dogsRender: [],
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -10,11 +11,12 @@ const reducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         allDogs: payload,
+        dogsRender: payload,
       };
     case SEARCH_BY_NAME:
       return {
         ...state,
-        allDogs: state.allDogs.filter((dog) =>
+        dogsRender: state.allDogs.filter((dog) =>
           payload.includes(dog.id) ? dog : null
         ),
       };

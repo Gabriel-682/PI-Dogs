@@ -4,12 +4,8 @@ import { getDogByName } from "../../redux/actions";
 function SearchBar() {
   const dispatch = useDispatch();
 
-  const handleOnChange = (ev) => {
-    try {
-      dispatch(getDogByName(ev.target.value));
-    } catch (error) {
-      console.log(error);
-    }
+  const handleOnChange = async (ev) => {
+    dispatch(getDogByName(ev.target.value));
   };
 
   return (

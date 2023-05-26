@@ -16,6 +16,8 @@ export const getAllDogs = () => {
 };
 
 export const getDogByName = (name) => {
+  if (!name) return getAllDogs();
+
   return async (dispatch) => {
     try {
       const { data } = await axios(

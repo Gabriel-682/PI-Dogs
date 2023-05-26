@@ -7,7 +7,7 @@ import { getAllDogs } from "../../redux/actions";
 import Nav from "../Nav/Nav";
 
 function HomePage() {
-  const dogsRender = useSelector((state) => state.allDogs);
+  const dogsRender = useSelector((state) => state.dogsRender);
   const dispatch = useDispatch();
   const totalDogs = dogsRender.length;
   const dogsPerPage = 8;
