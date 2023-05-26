@@ -14,12 +14,16 @@ const reducer = (state = initialState, { type, payload }) => {
         dogsRender: payload,
       };
     case SEARCH_BY_NAME:
-      return {
-        ...state,
-        dogsRender: state.allDogs.filter((dog) =>
-          payload.includes(dog.id) ? dog : null
-        ),
-      };
+      if (payload) {
+        return {
+          ...state,
+          dogsRender: state.allDogs.filter((dog) =>
+            payload.includes(dog.id) ? dog : null
+          ),
+        };
+      } else {
+        return { ...state, dogsRender: state.allDogs };
+      }
     default:
       return { ...state };
   }
