@@ -18,21 +18,19 @@ export const getAllDogs = () => {
 export const getDogByName = (name) => {
   return async (dispatch) => {
     try {
-      if (name) {
-        const { data } = await axios(
-          `http://localhost:3001/dogs/name?name=${name}`
-        );
-        return dispatch({
-          type: SEARCH_BY_NAME,
-          payload: data,
-        });
-      } else {
-        return dispatch({
-          type: SEARCH_BY_NAME,
-        });
-      }
+      const { data } = await axios(
+        `http://localhost:3001/dogs/name?name=${name}`
+      );
+      return dispatch({
+        type: SEARCH_BY_NAME,
+        payload: data,
+      });
     } catch (error) {
       console.log(error.response.data);
+      return dispatch({
+        type: SEARCH_BY_NAME,
+        payload: error.response.data,
+      });
     }
   };
 };

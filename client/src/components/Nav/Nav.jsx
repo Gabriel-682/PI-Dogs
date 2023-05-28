@@ -1,10 +1,10 @@
 import SearchBar from "../SearchBar/SearchBar";
 
-function Nav() {
+function Nav({ setCurrentPage }) {
   return (
     <div>
       <p>SOY LA NAV</p>
-      <SearchBar />
+      <SearchBar setCurrentPage={setCurrentPage} />
     </div>
   );
 }

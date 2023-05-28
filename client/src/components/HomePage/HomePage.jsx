@@ -17,27 +17,34 @@ function HomePage() {
   const firstIndex = lastIndex - dogsPerPage;
 
   useEffect(() => {
-    setTimeout(() => dispatch(getAllDogs()), 1000);
+    dispatch(getAllDogs());
   }, [dispatch]);
 
-  return !dogsRender.length ? (
+  return !dogsRender.length && !dogsRender.error ? (
     <PreLoader />
   ) : (
     <div>
       <h1>SOY HOME PAGE</h1>
-      <Nav />
+      <Nav setCurrentPage={setCurrentPage} />
       <div className={styles.dogsContenedor}>
-        {dogsRender
-          .map((dog) => (
-            <DogCard
-              key={dog.name}
-              image={dog.image}
-              name={dog.name}
-              temperament={dog.Temperaments}
-              weight={dog.weight}
-            />
-          ))
-          .slice(firstIndex, lastIndex)}
+        {dogsRender.error ? (
+          <div>
+            <div>{dogsRender.error}</div>
+            <button>CREAR</button>
+          </div>
+        ) : (
+          dogsRender
+            .map((dog) => (
+              <DogCard
+                key={dog.name}
+                image={dog.image}
+                name={dog.name}
+                temperament={dog.Temperaments}
+                weight={dog.weight}
+              />
+            ))
+            .slice(firstIndex, lastIndex)
+        )}
       </div>
       <Pagination
         dogsPerPage={dogsPerPage}
