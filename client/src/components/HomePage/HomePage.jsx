@@ -1,11 +1,12 @@
 import styles from "./HomePage.module.css";
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { getAllDogs } from "../../redux/actions";
 import DogCard from "../DogCard/DogCard";
 import Pagination from "../Pagination/Pagination";
 import Nav from "../Nav/Nav";
 import PreLoader from "../PreLoader/PreLoader";
-import { getAllDogs } from "../../redux/actions";
 
 function HomePage() {
   const dogsRender = useSelector((state) => state.dogsRender);
@@ -16,13 +17,19 @@ function HomePage() {
   const lastIndex = currentPage * dogsPerPage;
   const firstIndex = lastIndex - dogsPerPage;
 
+  const getAllTemperaments = async () => {
+    await axios("http://localhost:3001/temperaments");
+  };
+
   useEffect(() => {
+    getAllTemperaments();
     dispatch(getAllDogs());
   }, [dispatch]);
 
-  return !dogsRender.length && !dogsRender.error ? (
-    <PreLoader />
-  ) : (
+  // return !dogsRender.length && !dogsRender.error ? (
+  //   <PreLoader />
+  // ) : (
+  return (
     <div>
       <h1>SOY HOME PAGE</h1>
       <Nav setCurrentPage={setCurrentPage} />

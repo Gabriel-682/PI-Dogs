@@ -1,12 +1,10 @@
 const axios = require("axios");
-const getAllDogs = require("./getAllDogs");
 const { Temperament } = require("../db");
 
 const getTemperaments = async () => {
   let temperaments = [];
   let bulk = [];
   const { data } = await axios("https://api.thedogapi.com/v1/breeds");
-  // const data = await getAllDogs();
 
   data.forEach((element) => {
     element.temperament

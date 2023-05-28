@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_ALL_DOGS, SEARCH_BY_NAME } from "./actionsTypes";
+import { GET_ALL_DOGS, SEARCH_BY_NAME, RESET_SEARCH } from "./actionsTypes";
 
 export const getAllDogs = () => {
   return async (dispatch) => {
@@ -32,5 +32,11 @@ export const getDogByName = (name) => {
         payload: error.response.data,
       });
     }
+  };
+};
+
+export const resetSearch = () => {
+  return {
+    type: RESET_SEARCH,
   };
 };

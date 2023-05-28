@@ -1,4 +1,4 @@
-import { GET_ALL_DOGS, SEARCH_BY_NAME } from "./actionsTypes";
+import { GET_ALL_DOGS, SEARCH_BY_NAME, RESET_SEARCH } from "./actionsTypes";
 
 const initialState = {
   allDogs: [],
@@ -27,6 +27,11 @@ const reducer = (state = initialState, { type, payload }) => {
           ),
         };
       }
+    case RESET_SEARCH:
+      return {
+        ...state,
+        dogsRender: state.allDogs,
+      };
     default:
       return { ...state };
   }
