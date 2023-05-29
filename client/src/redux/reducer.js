@@ -3,11 +3,12 @@ import {
   SEARCH_BY_NAME,
   RESET_SEARCH,
   GET_DETAIL,
+  GET_TEMPERAMENTS,
 } from "./actionsTypes";
 
 const initialState = {
-  allDogs: [],
   dogsRender: [],
+  temperaments: [],
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -15,7 +16,6 @@ const reducer = (state = initialState, { type, payload }) => {
     case GET_ALL_DOGS:
       return {
         ...state,
-        allDogs: payload,
         dogsRender: payload,
       };
     case SEARCH_BY_NAME:
@@ -32,6 +32,11 @@ const reducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         dogsRender: payload,
+      };
+    case GET_TEMPERAMENTS:
+      return {
+        ...state,
+        temperaments: payload,
       };
     default:
       return { ...state };

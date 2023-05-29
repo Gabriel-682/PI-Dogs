@@ -4,6 +4,7 @@ import {
   SEARCH_BY_NAME,
   RESET_SEARCH,
   GET_DETAIL,
+  GET_TEMPERAMENTS,
 } from "./actionsTypes";
 
 export const getAllDogs = () => {
@@ -51,6 +52,20 @@ export const getDetail = (id) => {
       const { data } = await axios(`http://localhost:3001/dogs/${id}`);
       return dispatch({
         type: GET_DETAIL,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
+};
+
+export const getTemperaments = () => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios("http://localhost:3001/temperaments");
+      return dispatch({
+        type: GET_TEMPERAMENTS,
         payload: data,
       });
     } catch (error) {

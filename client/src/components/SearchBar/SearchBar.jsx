@@ -7,10 +7,6 @@ function SearchBar({ setCurrentPage }) {
   const [showInput, setShowInput] = useState(false);
   const [breed, setBreed] = useState("");
 
-  // const onChangeHandler = (ev) => {
-  //   dispatch(getDogByName(ev.target.value));
-  // };
-
   const onChangeHandler = (ev) => {
     setBreed(ev.target.value);
   };
