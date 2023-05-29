@@ -4,22 +4,28 @@ const { Temperament } = require("../db");
 const getTemperaments = async () => {
   let temperaments = [];
   let bulk = [];
-  const { data } = await axios("https://api.thedogapi.com/v1/breeds");
+  let TemperamentTable = await Temperament.findAll();
 
-  data.forEach((element) => {
-    element.temperament
-      ? (temperaments = [...temperaments, ...element.temperament.split(", ")])
-      : null;
-  });
+  if (!TemperamentTable.length) {
+    const { data } = await axios("https://api.thedogapi.com/v1/breeds");
 
-  let filter = new Set(temperaments);
-  let filtered = [...filter].sort();
+    data.forEach((element) => {
+      element.temperament
+        ? (temperaments = [...temperaments, ...element.temperament.split(", ")])
+        : null;
+    });
 
-  filtered.forEach((elem) => bulk.push({ name: elem }));
+    let filter = new Set(temperaments);
+    let filtered = [...filter].sort();
 
-  const created = await Temperament.bulkCreate(bulk);
+    filtered.forEach((elem) => bulk.push({ name: elem }));
 
-  return created;
+    TemperamentTable = await Temperament.bulkCreate(bulk);
+
+    return TemperamentTable;
+  }
+
+  return TemperamentTable;
 };
 
 module.exports = getTemperaments;

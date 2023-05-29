@@ -22,14 +22,14 @@ function HomePage() {
   };
 
   useEffect(() => {
+    // console.log("UseEffect");
     getAllTemperaments();
     dispatch(getAllDogs());
   }, [dispatch]);
 
-  // return !dogsRender.length && !dogsRender.error ? (
-  //   <PreLoader />
-  // ) : (
-  return (
+  return !dogsRender.length && !dogsRender.error ? (
+    <PreLoader />
+  ) : (
     <div>
       <h1>SOY HOME PAGE</h1>
       <Nav setCurrentPage={setCurrentPage} />
@@ -43,7 +43,8 @@ function HomePage() {
           dogsRender
             .map((dog) => (
               <DogCard
-                key={dog.name}
+                key={dog.id}
+                id={dog.id}
                 image={dog.image}
                 name={dog.name}
                 temperament={dog.Temperaments}
