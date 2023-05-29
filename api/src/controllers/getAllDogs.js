@@ -14,7 +14,7 @@ const getAllDogs = async () => {
     },
   });
 
-  const dataFixed = data.map((dog) => {
+  const dataFixed = await data.map((dog) => {
     dog.weight = dog.weight.metric;
     dog.height = dog.height.metric;
     dog.image = dog.image.url;
@@ -30,13 +30,3 @@ const getAllDogs = async () => {
 };
 
 module.exports = getAllDogs;
-
-// Antes cambios:
-// const axios = require("axios");
-
-// const getAllDogs = async () => {
-//   const { data } = await axios.get("https://api.thedogapi.com/v1/breeds");
-//   return data;
-// };
-
-// module.exports = getAllDogs;

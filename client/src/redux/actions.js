@@ -31,7 +31,6 @@ export const getDogByName = (name) => {
         payload: data,
       });
     } catch (error) {
-      console.log(error.response.data);
       return dispatch({
         type: SEARCH_BY_NAME,
         payload: error.response.data,

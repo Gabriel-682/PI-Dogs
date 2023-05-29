@@ -22,7 +22,6 @@ function HomePage() {
   };
 
   useEffect(() => {
-    // console.log("UseEffect");
     getAllTemperaments();
     dispatch(getAllDogs());
   }, [dispatch]);

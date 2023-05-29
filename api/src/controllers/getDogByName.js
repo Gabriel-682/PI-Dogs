@@ -1,34 +1,31 @@
 const axios = require("axios");
 const { Op } = require("sequelize");
 const { Dog } = require("../db");
-const { Temperament } = require("../db");
+const getAllDogs = require("./getAllDogs");
 
 const getDogByName = async (name) => {
-  let result = [];
+  const allDogs = await getAllDogs();
 
   const { data } = await axios(
     `https://api.thedogapi.com/v1/breeds/search?q=${name}`
   );
 
-  result = data.map((dog) => dog.id);
+  let result = data.map((dog) => dog.id);
 
   const dog = await Dog.findOne({
     where: { name: { [Op.iLike]: `%${name}%` } },
-    // include: {
-    //   model: Temperament,
-    //   attributes: ["name"],
-    //   through: {
-    //     attributes: [],
-    //   },
-    // },
   });
 
   if (dog) result = [...result, dog.id];
 
-  if (result.length === 0)
+  let finalResult = allDogs.filter((dog) =>
+    result.includes(dog.id) ? dog : null
+  );
+
+  if (finalResult.length === 0)
     throw Error(`La raza '${name}' no existe, puede crearla.`);
 
-  return result;
+  return finalResult;
 };
 
 module.exports = getDogByName;
