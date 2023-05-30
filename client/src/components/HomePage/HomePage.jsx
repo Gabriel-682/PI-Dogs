@@ -1,5 +1,4 @@
 import styles from "./HomePage.module.css";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -36,14 +35,25 @@ function HomePage() {
       <h1>SOY HOME PAGE</h1>
       <Nav setCurrentPage={setCurrentPage} />
       <div className="filtros">
-        {/* <label htmlFor="">FILTRAR POR</label> */}
-        <select name="isApi - ver si sirve esta propiedad">
-          <option value="" selected disabled>FUENTE</option>
+        <label htmlFor="">FILTRAR POR: </label>
+        <select
+          name="isApi - ver si sirve esta propiedad"
+          defaultValue={"default"}
+        >
+          <option value="default" disabled>
+            FUENTE
+          </option>
           <option value="api">API</option>
-          <option value="dataBase">DATA BASE</option>
-          <option value="reset">RESET</option>
+          <option value="dataBase">Data Base</option>
+          <option value="reset">Reset</option>
         </select>
-        <select name="Temperamentos - ver si sirve esta propiedad">
+        <select
+          name="Temperamentos - ver si sirve esta propiedad"
+          defaultValue={"default"}
+        >
+          <option value="default" disabled>
+            TEMPERAMENTOS
+          </option>
           {temperaments?.map((temp) => {
             return (
               <option key={temp.id} value={temp.name}>
@@ -51,6 +61,17 @@ function HomePage() {
               </option>
             );
           })}
+        </select>
+        <label htmlFor="">ORDENAR POR:</label>
+        <select
+          name="order - cer si sirve esta propiedad"
+          defaultValue={"default"}
+        >
+          <option value="default">--seleccionar--</option>
+          <option value="az">A-Z</option>
+          <option value="za">Z-A</option>
+          <option value="mayorPeso">Mayor peso</option>
+          <option value="menorPeso">Menor peso</option>
         </select>
       </div>
       <div className={styles.dogsContenedor}>
