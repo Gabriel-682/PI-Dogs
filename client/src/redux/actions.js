@@ -2,9 +2,9 @@ import axios from "axios";
 import {
   GET_ALL_DOGS,
   SEARCH_BY_NAME,
-  RESET_SEARCH,
   GET_DETAIL,
   GET_TEMPERAMENTS,
+  ORDER_BY,
 } from "./actionsTypes";
 
 export const getAllDogs = () => {
@@ -40,12 +40,6 @@ export const getDogByName = (name) => {
   };
 };
 
-export const resetSearch = () => {
-  return {
-    type: RESET_SEARCH,
-  };
-};
-
 export const getDetail = (id) => {
   return async (dispatch) => {
     try {
@@ -71,5 +65,14 @@ export const getTemperaments = () => {
     } catch (error) {
       console.log(error.response.data);
     }
+  };
+};
+
+export const orderBy = (order) => {
+  return (dispatch) => {
+    return dispatch({
+      type: ORDER_BY,
+      payload: order,
+    });
   };
 };

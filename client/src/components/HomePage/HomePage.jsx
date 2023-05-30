@@ -2,7 +2,7 @@ import styles from "./HomePage.module.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getAllDogs, getTemperaments } from "../../redux/actions";
+import { getAllDogs, getTemperaments, orderBy } from "../../redux/actions";
 import DogCard from "../DogCard/DogCard";
 import Pagination from "../Pagination/Pagination";
 import Nav from "../Nav/Nav";
@@ -27,6 +27,10 @@ function HomePage() {
     dispatch(getTemperaments());
     dispatch(getAllDogs());
   }, [dispatch]);
+
+  const onChangeHandlerOrder = (ev) => {
+    dispatch(orderBy(ev.target.value));
+  };
 
   return !dogsRender.length && !dogsRender.error ? (
     <PreLoader />
@@ -64,10 +68,10 @@ function HomePage() {
         </select>
         <label htmlFor="">ORDENAR POR:</label>
         <select
-          name="order - cer si sirve esta propiedad"
-          defaultValue={"default"}
+          name="order - ver si sirve esta propiedad"
+          defaultValue={"az"}
+          onChange={onChangeHandlerOrder}
         >
-          <option value="default">--seleccionar--</option>
           <option value="az">A-Z</option>
           <option value="za">Z-A</option>
           <option value="mayorPeso">Mayor peso</option>

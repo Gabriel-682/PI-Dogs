@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { useState } from "react";
-import { getDogByName, resetSearch } from "../../redux/actions";
+import { getDogByName, getAllDogs } from "../../redux/actions";
 
 function SearchBar({ setCurrentPage }) {
   const dispatch = useDispatch();
@@ -12,7 +12,7 @@ function SearchBar({ setCurrentPage }) {
   };
 
   const onClickHandlerHide = () => {
-    showInput && dispatch(resetSearch());
+    showInput && dispatch(getAllDogs());
     setShowInput(!showInput);
   };
 
