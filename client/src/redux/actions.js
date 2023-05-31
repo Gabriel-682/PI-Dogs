@@ -5,6 +5,8 @@ import {
   GET_DETAIL,
   GET_TEMPERAMENTS,
   ORDER_BY,
+  TEMPERAMENT_FILTER,
+  SOURCE_FILTER,
 } from "./actionsTypes";
 
 export const getAllDogs = () => {
@@ -73,6 +75,24 @@ export const orderBy = (order) => {
     return dispatch({
       type: ORDER_BY,
       payload: order,
+    });
+  };
+};
+
+export const temperamentFilter = (temp) => {
+  return (dispatch) => {
+    return dispatch({
+      type: TEMPERAMENT_FILTER,
+      payload: temp,
+    });
+  };
+};
+
+export const sourceFilter = (source) => {
+  return (dispatch) => {
+    return dispatch({
+      type: SOURCE_FILTER,
+      payload: source,
     });
   };
 };

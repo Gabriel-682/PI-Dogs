@@ -4,6 +4,8 @@ import {
   GET_DETAIL,
   GET_TEMPERAMENTS,
   ORDER_BY,
+  TEMPERAMENT_FILTER,
+  SOURCE_FILTER,
 } from "./actionsTypes";
 
 const initialState = {
@@ -33,8 +35,33 @@ const reducer = (state = initialState, { type, payload }) => {
         ...state,
         temperaments: payload,
       };
+    case SOURCE_FILTER:
+      let sourceFilter = [];
+      if (payload === "api")
+        sourceFilter = state.dogsRender.filter(
+          (dog) => typeof dog.id === "number"
+        );
+      if (payload === "dataBase")
+        sourceFilter = state.dogsRender.filter(
+          (dog) => typeof dog.id === "string"
+        );
+      if (!sourceFilter.length)
+        sourceFilter = {
+          error: "No hay razas creadas. Puede crear una raza.",
+        };
+      return {
+        ...state,
+        dogsRender: sourceFilter,
+      };
+    case TEMPERAMENT_FILTER:
+      const tempFiltered = state.dogsRender.filter((dog) =>
+        dog.Temperaments?.find((temp) => temp.name === payload) ? dog : null
+      );
+      return {
+        ...state,
+        dogsRender: [...tempFiltered],
+      };
     case ORDER_BY:
-      console.log(state.dogsRender[0].weight.split(" ")[2]);
       let reordered = [];
       if (payload === "az")
         reordered = state.dogsRender.sort((a, b) => (a.name > b.name ? 1 : -1));
