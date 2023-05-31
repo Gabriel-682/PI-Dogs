@@ -6,11 +6,14 @@ import {
   ORDER_BY,
   TEMPERAMENT_FILTER,
   SOURCE_FILTER,
+  SET_CURRENT_PAGE,
 } from "./actionsTypes";
 
 const initialState = {
   dogsRender: [],
   temperaments: [],
+  dogsPerPage: 8,
+  currentPage: 1,
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -88,6 +91,11 @@ const reducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         dogsRender: [...reordered],
+      };
+    case SET_CURRENT_PAGE:
+      return {
+        ...state,
+        currentPage: payload,
       };
     default:
       return { ...state };

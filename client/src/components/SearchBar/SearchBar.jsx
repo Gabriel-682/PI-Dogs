@@ -1,8 +1,8 @@
 import { useDispatch } from "react-redux";
 import { useState } from "react";
-import { getDogByName, getAllDogs } from "../../redux/actions";
+import { getDogByName, getAllDogs, setCurrentPage } from "../../redux/actions";
 
-function SearchBar({ setCurrentPage }) {
+function SearchBar() {
   const dispatch = useDispatch();
   const [showInput, setShowInput] = useState(false);
   const [breed, setBreed] = useState("");
@@ -17,7 +17,7 @@ function SearchBar({ setCurrentPage }) {
   };
 
   const onClickHandlerSearch = (breed) => {
-    setCurrentPage(1);
+    dispatch(setCurrentPage(1));
     dispatch(getDogByName(breed));
   };
 

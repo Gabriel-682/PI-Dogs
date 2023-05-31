@@ -8,7 +8,6 @@ import {
 
 function Filters() {
   const temperaments = useSelector((state) => state.temperaments);
-  const dogsrender = useSelector((state) => state.dogsrender);
   const dispatch = useDispatch();
 
   const onChangeHandlerSource = async (ev) => {

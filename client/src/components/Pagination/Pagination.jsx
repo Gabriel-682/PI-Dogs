@@ -1,6 +1,13 @@
 import styles from "./Pagination.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { setCurrentPage } from "../../redux/actions";
 
-function Pagination({ dogsPerPage, currentPage, setCurrentPage, totalDogs }) {
+function Pagination() {
+  const dogsRender = useSelector((state) => state.dogsRender);
+  const dogsPerPage = useSelector((state) => state.dogsPerPage);
+  const currentPage = useSelector((state) => state.currentPage);
+  const dispatch = useDispatch();
+  const totalDogs = dogsRender.length;
   const pageNumbers = [];
 
   for (let i = 1; i <= Math.ceil(totalDogs / dogsPerPage); i++) {
@@ -8,15 +15,15 @@ function Pagination({ dogsPerPage, currentPage, setCurrentPage, totalDogs }) {
   }
 
   const onPreviusPage = () => {
-    setCurrentPage(currentPage - 1);
+    dispatch(setCurrentPage(currentPage - 1));
   };
 
   const onNextPage = () => {
-    setCurrentPage(currentPage + 1);
+    dispatch(setCurrentPage(currentPage + 1));
   };
 
   const onSpecificPage = (n) => {
-    setCurrentPage(n);
+    dispatch(setCurrentPage(n));
   };
 
   return (

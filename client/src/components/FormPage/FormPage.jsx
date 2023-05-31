@@ -11,7 +11,6 @@ function FormPage() {
   return (
     <div>
       <h1>SOY FORM PAGE</h1>
-      image, name, height, weight, life_span, temperaments,
       <form>
         <label htmlFor="">NOMBRE</label>
         <input type="text" />

@@ -7,6 +7,7 @@ import {
   ORDER_BY,
   TEMPERAMENT_FILTER,
   SOURCE_FILTER,
+  SET_CURRENT_PAGE,
 } from "./actionsTypes";
 
 export const getAllDogs = () => {
@@ -93,6 +94,15 @@ export const sourceFilter = (source) => {
     return dispatch({
       type: SOURCE_FILTER,
       payload: source,
+    });
+  };
+};
+
+export const setCurrentPage = (page) => {
+  return (dispatch) => {
+    return dispatch({
+      type: SET_CURRENT_PAGE,
+      payload: page,
     });
   };
 };
