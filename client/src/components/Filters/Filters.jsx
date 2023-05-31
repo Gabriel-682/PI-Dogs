@@ -4,6 +4,7 @@ import {
   temperamentFilter,
   getAllDogs,
   sourceFilter,
+  setCurrentPage,
 } from "../../redux/actions";
 
 function Filters() {
@@ -13,15 +14,19 @@ function Filters() {
   const onChangeHandlerSource = async (ev) => {
     await dispatch(getAllDogs());
     if (ev.target.value !== "reset") dispatch(sourceFilter(ev.target.value));
+    dispatch(setCurrentPage(1));
   };
 
   const onChangeHandlerTemperaments = async (ev) => {
     await dispatch(getAllDogs());
-    dispatch(temperamentFilter(ev.target.value));
+    if (ev.target.value !== "reset")
+      dispatch(temperamentFilter(ev.target.value));
+    dispatch(setCurrentPage(1));
   };
 
   const onChangeHandlerOrder = (ev) => {
     dispatch(orderBy(ev.target.value));
+    dispatch(setCurrentPage(1));
   };
 
   return (
@@ -35,9 +40,9 @@ function Filters() {
         <option value="default" disabled>
           FUENTE
         </option>
+        <option value="reset">--reset--</option>
         <option value="api">API</option>
         <option value="dataBase">Creados</option>
-        <option value="reset">--reset--</option>
       </select>
       <select
         name="Temperamentos - ver si sirve esta propiedad"
@@ -47,6 +52,7 @@ function Filters() {
         <option value="default" disabled>
           TEMPERAMENTOS
         </option>
+        <option value="reset">--reset--</option>
         {temperaments?.map((temp) => {
           return (
             <option key={temp.id} value={temp.name}>
@@ -58,9 +64,10 @@ function Filters() {
       <label htmlFor="">ORDENAR POR:</label>
       <select
         name="order - ver si sirve esta propiedad"
-        defaultValue={"az"}
+        defaultValue={"default"}
         onChange={onChangeHandlerOrder}
       >
+        <option value="default">--selecciona--</option>
         <option value="az">A-Z</option>
         <option value="za">Z-A</option>
         <option value="mayorPeso">Mayor peso</option>
