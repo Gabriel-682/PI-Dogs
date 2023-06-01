@@ -1,4 +1,4 @@
-// import styles from "./HomePage.module.css";
+import styles from "./HomePage.module.css";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllDogs, getTemperaments } from "../../redux/actions";
@@ -19,8 +19,7 @@ function HomePage() {
   return !dogsRender.length && !dogsRender.error ? (
     <PreLoader />
   ) : (
-    <div>
-      <h1>SOY HOME PAGE</h1>
+    <div className={styles.homePageContent}>
       <Nav />
       <Filters />
       <RenderDogs />

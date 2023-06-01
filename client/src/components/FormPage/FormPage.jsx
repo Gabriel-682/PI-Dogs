@@ -1,4 +1,4 @@
-import style from "./FormPage.module.css";
+import styles from "./FormPage.module.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -64,10 +64,10 @@ function FormPage() {
   };
 
   return (
-    <div>
+    <div className={styles.formPageContent}>
       <h1>SOY FORM PAGE</h1>
-      <div className={style.image}></div>
-      <div>
+      <div className={styles.image}></div>
+      <div className={styles.form}>
         {/* Nombre. Altura (diferenciar entre altura mínima y máxima de la raza).
         Peso (diferenciar entre peso mínimo y máximo de la raza). Años de vida.
         Posibilidad de seleccionar/agregar varios temperamentos en simultáneo.
