@@ -14,7 +14,7 @@ function HomePage() {
   useEffect(() => {
     dispatch(getTemperaments());
     dispatch(getAllDogs());
-  });
+  }, [dispatch]);
 
   return !dogsRender.length && !dogsRender.error ? (
     <PreLoader />

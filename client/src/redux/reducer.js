@@ -95,7 +95,7 @@ const reducer = (state = initialState, { type, payload }) => {
         dogsRender: [...reordered],
       };
     case POST_DOG:
-      console.log(payload); // BORRAR
+      console.log("Reducer: ", payload); // BORRAR
       return {
         ...state,
         newDataBaseDog: payload,

@@ -33,7 +33,7 @@ function FormPage() {
 
   useEffect(() => {
     dispatch(getTemperaments());
-  });
+  }, [dispatch]); //BORRAR
 
   const handleInputChange = (ev) => {
     setNewDogInput({ ...newDogInput, [ev.target.name]: ev.target.value });
@@ -55,8 +55,10 @@ function FormPage() {
   };
 
   const handleSubmit = (ev) => {
-    console.log("SUBMIT!"); //BORRAR
     ev.preventDefault();
+    console.log("SUBMIT!"); //BORRAR
+    console.log("Input: ", newDogInput); //BORRAR
+    console.log("Post: ", newDog); //BORRAR
     dispatch(postDog(newDog));
   };
 
@@ -142,6 +144,16 @@ function FormPage() {
       </div>
       <button onClick={onClickHandlerBtnVolver}>VOLVER</button>
       <div>{newDataBaseDog.error ? newDataBaseDog.error : null}</div>
+      {newDataBaseDog && !newDataBaseDog.error ? (
+        <div>
+          <p>{newDataBaseDog.name}</p>
+          <p>{newDataBaseDog.height}</p>
+          <p>{newDataBaseDog.weight}</p>
+          <p>{newDataBaseDog.life_span}</p>
+          <p>{newDataBaseDog.image}</p>
+          <p>{newDataBaseDog.temperaments}</p>
+        </div>
+      ) : null}
     </div>
   );
 }
