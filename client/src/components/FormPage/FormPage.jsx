@@ -65,79 +65,88 @@ function FormPage() {
 
   return (
     <div className={styles.formPageContent}>
-      <h1>SOY FORM PAGE</h1>
-      <div className={styles.image}></div>
-      <div className={styles.form}>
-        {/* Nombre. Altura (diferenciar entre altura mínima y máxima de la raza).
+      <div className={styles.picFormContent}>
+        <div className={styles.image}></div>
+        <div className={styles.form}>
+          {/* Nombre. Altura (diferenciar entre altura mínima y máxima de la raza).
         Peso (diferenciar entre peso mínimo y máximo de la raza). Años de vida.
         Posibilidad de seleccionar/agregar varios temperamentos en simultáneo.
         Botón para crear la nueva raza. */}
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="name">NOMBRE: </label>
-          <input type="text" name="name" onChange={handleInputChange} />
-
-          <label>ALTURA: </label>
-          <label htmlFor="minHeight">Min.: </label>
-          <input type="number" name="minHeight" onChange={handleInputChange} />
-          <label htmlFor="maxHeight">Máx.: </label>
-          <input type="number" name="maxHeight" onChange={handleInputChange} />
-
-          <label>PESO: </label>
-          <label htmlFor="minWeight">Min.: </label>
-          <input type="number" name="minWeight" onChange={handleInputChange} />
-          <label htmlFor="maxWeight">Máx.: </label>
-          <input type="number" name="maxWeight" onChange={handleInputChange} />
-
-          <label>ESPECTATIVA DE VIDA: </label>
-          <label htmlFor="minLife_span">Min.: </label>
-          <input
-            type="number"
-            name="minLife_span"
-            onChange={handleInputChange}
-          />
-          <label htmlFor="maxLife_span">Máx.: </label>
-          <input
-            type="number"
-            name="maxLife_span"
-            onChange={handleInputChange}
-          />
-
-          <label htmlFor="image">IMAGEN(URL): </label>
-          <input type="url" name="image" onChange={handleInputChange} />
-
-          <label htmlFor="selecTemperaments">Temperamentos: </label>
-          <select
-            name="selecTemperaments"
-            defaultValue={"default"}
-            onChange={handleSelectChange}
-          >
-            <option value="default" disabled>
-              --seleccione--
-            </option>
-            {temperamentsState?.map((temp) => {
-              return (
-                <option key={temp.id} value={temp.id}>
-                  {temp.name}
-                </option>
-              );
-            })}
-          </select>
-          <div>
-            {newDogInput.temperaments.length
-              ? newDogInput.temperaments.map((temp) => (
-                  <div key={temp}>
-                    <div>
-                      {temperamentsState.find((el) => el.id === temp).name}
+          <form onSubmit={handleSubmit}>
+            <label htmlFor="name">NOMBRE: </label>
+            <br />
+            <input type="text" name="name" onChange={handleInputChange} />
+            <br />
+            <label>ALTURA: </label>
+            <br />
+            <label htmlFor="minHeight">Min.: </label>
+            <input type="text" name="minHeight" onChange={handleInputChange} />
+            <label htmlFor="maxHeight">Máx.: </label>
+            <input type="text" name="maxHeight" onChange={handleInputChange} />
+            <br />
+            <label>PESO: </label>
+            <br />
+            <label htmlFor="minWeight">Min.: </label>
+            <input type="text" name="minWeight" onChange={handleInputChange} />
+            <label htmlFor="maxWeight">Máx.: </label>
+            <input type="text" name="maxWeight" onChange={handleInputChange} />
+            <br />
+            <label>ESPECTATIVA DE VIDA: </label>
+            <br />
+            <label htmlFor="minLife_span">Min.: </label>
+            <input
+              type="text"
+              name="minLife_span"
+              onChange={handleInputChange}
+            />
+            <label htmlFor="maxLife_span">Máx.: </label>
+            <input
+              type="text"
+              name="maxLife_span"
+              onChange={handleInputChange}
+            />
+            <br />
+            <label htmlFor="image">IMAGEN(URL): </label>
+            <br />
+            <input type="text" name="image" onChange={handleInputChange} />
+            <br />
+            <label htmlFor="selecTemperaments">Temperamentos:</label>
+            <select
+              name="selecTemperaments"
+              defaultValue={"default"}
+              onChange={handleSelectChange}
+            >
+              <option value="default" disabled>
+                --seleccione--
+              </option>
+              {temperamentsState?.map((temp) => {
+                return (
+                  <option key={temp.id} value={temp.id}>
+                    {temp.name}
+                  </option>
+                );
+              })}
+            </select>
+            <div className={styles.temperamentsContent}>
+              {newDogInput.temperaments.length
+                ? newDogInput.temperaments.map((temp) => (
+                    <div key={temp} className={styles.temperamentShown}>
+                      <div>
+                        {temperamentsState.find((el) => el.id === temp).name}
+                      </div>
+                      <button
+                        className={styles.btnTemperamentShown}
+                        onClick={(ev) => deleteTemperament(ev, temp)}
+                      >
+                        X
+                      </button>
                     </div>
-                    <button onClick={(ev) => deleteTemperament(ev, temp)}>
-                      X
-                    </button>
-                  </div>
-                ))
-              : null}
-          </div>
-          <button type="submit">CREAR!</button>
-        </form>
+                  ))
+                : null}
+            </div>
+            <button type="submit">CREAR!</button>
+          </form>
+        </div>
       </div>
       <button onClick={onClickHandlerBtnVolver}>VOLVER</button>
       <div>{newDataBaseDog.error ? newDataBaseDog.error : null}</div>
