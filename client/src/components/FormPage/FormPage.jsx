@@ -2,31 +2,30 @@ import style from "./FormPage.module.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getTemperaments } from "../../redux/actions";
+import { getTemperaments, postDog } from "../../redux/actions";
 
 function FormPage() {
-  const temperaments = useSelector((state) => state.temperaments);
-  const [newDog, setNewDog] = useState({
+  const temperamentsState = useSelector((state) => state.temperaments);
+  const newDataBaseDog = useSelector((state) => state.newDataBaseDog);
+  const [newDogInput, setNewDogInput] = useState({
     name: "",
-    minHeight: 0,
-    maxHeight: 0,
-    // height: "",
-    minWeight: 0,
-    maxWeight: 0,
-    // weight: "",
-    minLife_span: 0,
-    maxLife_span: 0,
-    // life_span: "",
+    minHeight: "",
+    maxHeight: "",
+    minWeight: "",
+    maxWeight: "",
+    minLife_span: "",
+    maxLife_span: "",
     image: "",
     temperaments: [],
   });
 
-  const dog = {
-    name: newDog.name,
-    height: `${newDog.minHeight} - ${newDog.maxHeight}`,
-    weight: `${newDog.minWeight} - ${newDog.maxWeight}`,
-    life_span: `${newDog.minLife_span} - ${newDog.maxLife_span}`,
-    image: newDog.image,
+  const newDog = {
+    name: newDogInput.name,
+    height: `${newDogInput.minHeight} - ${newDogInput.maxHeight}`,
+    weight: `${newDogInput.minWeight} - ${newDogInput.maxWeight}`,
+    life_span: `${newDogInput.minLife_span} - ${newDogInput.maxLife_span}`,
+    image: newDogInput.image,
+    temperaments: newDogInput.temperaments,
   };
 
   const navigate = useNavigate();
@@ -34,16 +33,31 @@ function FormPage() {
 
   useEffect(() => {
     dispatch(getTemperaments());
-    console.log(newDog); //BORRAR
-    console.log("Dog: ", dog); //BORRAR
-  }, [dispatch, newDog]);
+  });
 
   const handleInputChange = (ev) => {
-    setNewDog({ ...newDog, [ev.target.name]: ev.target.value });
+    setNewDogInput({ ...newDogInput, [ev.target.name]: ev.target.value });
   };
 
   const handleSelectChange = (ev) => {
-    setNewDog({ ...newDog, temperaments: [...temperaments, ev.target.id] });
+    setNewDogInput({
+      ...newDogInput,
+      temperaments: [...newDogInput.temperaments, Number(ev.target.value)],
+    });
+  };
+
+  const deleteTemperament = (ev, tempId) => {
+    ev.preventDefault();
+    setNewDogInput({
+      ...newDogInput,
+      temperaments: newDogInput.temperaments.filter((temp) => temp !== tempId),
+    });
+  };
+
+  const handleSubmit = (ev) => {
+    console.log("SUBMIT!"); //BORRAR
+    ev.preventDefault();
+    dispatch(postDog(newDog));
   };
 
   const onClickHandlerBtnVolver = () => {
@@ -59,7 +73,7 @@ function FormPage() {
         Peso (diferenciar entre peso mínimo y máximo de la raza). Años de vida.
         Posibilidad de seleccionar/agregar varios temperamentos en simultáneo.
         Botón para crear la nueva raza. */}
-        <form>
+        <form onSubmit={handleSubmit}>
           <label htmlFor="name">NOMBRE: </label>
           <input type="text" name="name" onChange={handleInputChange} />
 
@@ -93,22 +107,41 @@ function FormPage() {
           <input type="url" name="image" onChange={handleInputChange} />
 
           <label htmlFor="selecTemperaments">Temperamentos: </label>
-          <select name="selecTemperaments" id="" defaultValue={"default"}>
-            <option value="default">--seleccione--</option>
-            {temperaments?.map((temp) => (
-              <option
-                key={temp.id}
-                value={temp.id}
-                onSelect={handleSelectChange} // NO, NO, NO!!
-              >
-                {temp.name}
-              </option>
-            ))}
+          <select
+            name="selecTemperaments"
+            defaultValue={"default"}
+            onChange={handleSelectChange}
+          >
+            <option value="default" disabled>
+              --seleccione--
+            </option>
+            {temperamentsState?.map((temp) => {
+              return (
+                <option key={temp.id} value={temp.id}>
+                  {temp.name}
+                </option>
+              );
+            })}
           </select>
-          <button>CREAR!</button>
+          <div>
+            {newDogInput.temperaments.length
+              ? newDogInput.temperaments.map((temp) => (
+                  <div key={temp}>
+                    <div>
+                      {temperamentsState.find((el) => el.id === temp).name}
+                    </div>
+                    <button onClick={(ev) => deleteTemperament(ev, temp)}>
+                      X
+                    </button>
+                  </div>
+                ))
+              : null}
+          </div>
+          <button type="submit">CREAR!</button>
         </form>
       </div>
       <button onClick={onClickHandlerBtnVolver}>VOLVER</button>
+      <div>{newDataBaseDog.error ? newDataBaseDog.error : null}</div>
     </div>
   );
 }

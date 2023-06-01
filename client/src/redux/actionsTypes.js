@@ -6,3 +6,4 @@ export const ORDER_BY = "ORDER_BY";
 export const TEMPERAMENT_FILTER = "TEMPERAMENT_FILTER";
 export const SOURCE_FILTER = "SOURCE_FILTER";
 export const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
+export const POST_DOG = "POST_DOG";

@@ -7,11 +7,13 @@ import {
   TEMPERAMENT_FILTER,
   SOURCE_FILTER,
   SET_CURRENT_PAGE,
+  POST_DOG,
 } from "./actionsTypes";
 
 const initialState = {
   dogsRender: [],
   temperaments: [],
+  newDataBaseDog: [],
   dogsPerPage: 8,
   currentPage: 1,
 };
@@ -91,6 +93,12 @@ const reducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         dogsRender: [...reordered],
+      };
+    case POST_DOG:
+      console.log(payload); // BORRAR
+      return {
+        ...state,
+        newDataBaseDog: payload,
       };
     case SET_CURRENT_PAGE:
       return {

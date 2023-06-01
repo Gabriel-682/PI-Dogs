@@ -8,6 +8,7 @@ import {
   TEMPERAMENT_FILTER,
   SOURCE_FILTER,
   SET_CURRENT_PAGE,
+  POST_DOG,
 } from "./actionsTypes";
 
 export const getAllDogs = () => {
@@ -67,6 +68,25 @@ export const getTemperaments = () => {
       });
     } catch (error) {
       console.log(error.response.data);
+    }
+  };
+};
+
+export const postDog = (newDog) => {
+  console.log(newDog); //BORRAR
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.post("http://localhost:3001/dogs");
+      return dispatch({
+        type: POST_DOG,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error.response.data); // BORRAR
+      return dispatch({
+        type: POST_DOG,
+        payload: error.response.data,
+      });
     }
   };
 };
