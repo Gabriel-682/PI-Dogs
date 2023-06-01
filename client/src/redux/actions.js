@@ -73,7 +73,6 @@ export const getTemperaments = () => {
 };
 
 export const postDog = (newDog) => {
-  console.log("Action: ", newDog); //BORRAR
   return async (dispatch) => {
     try {
       const { data } = await axios.post("http://localhost:3001/dogs", newDog);
@@ -82,7 +81,6 @@ export const postDog = (newDog) => {
         payload: data,
       });
     } catch (error) {
-      console.log(error.response.data); // BORRAR
       return dispatch({
         type: POST_DOG,
         payload: error.response.data,
