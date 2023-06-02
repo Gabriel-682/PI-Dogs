@@ -3,11 +3,14 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getTemperaments, postDog } from "../../redux/actions";
+import validation from "../../utils/validation";
 
 function FormPage() {
   const temperamentsState = useSelector((state) => state.temperaments);
   const newDataBaseDog = useSelector((state) => state.newDataBaseDog);
-  const [newDogInput, setNewDogInput] = useState({
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [errors, setErrors] = useState({
     name: "",
     minHeight: "",
     maxHeight: "",
@@ -16,6 +19,17 @@ function FormPage() {
     minLife_span: "",
     maxLife_span: "",
     image: "",
+    temperaments: "Debe seleccionar al menos un temperamento.",
+  });
+  const [newDogInput, setNewDogInput] = useState({
+    name: undefined,
+    minHeight: undefined,
+    maxHeight: undefined,
+    minWeight: undefined,
+    maxWeight: undefined,
+    minLife_span: undefined,
+    maxLife_span: undefined,
+    image: undefined,
     temperaments: [],
   });
 
@@ -28,15 +42,15 @@ function FormPage() {
     temperaments: newDogInput.temperaments,
   };
 
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(getTemperaments());
   }, [dispatch]); //BORRAR TODO ESTE USEEFFECT
 
   const handleInputChange = (ev) => {
     setNewDogInput({ ...newDogInput, [ev.target.name]: ev.target.value });
+    setErrors(
+      validation({ ...newDogInput, [ev.target.name]: ev.target.value })
+    );
   };
 
   const handleSelectChange = (ev) => {
@@ -44,6 +58,12 @@ function FormPage() {
       ...newDogInput,
       temperaments: [...newDogInput.temperaments, Number(ev.target.value)],
     });
+    setErrors(
+      validation({
+        ...newDogInput,
+        temperaments: [...newDogInput.temperaments, Number(ev.target.value)],
+      })
+    );
   };
 
   const deleteTemperament = (ev, tempId) => {
@@ -52,6 +72,14 @@ function FormPage() {
       ...newDogInput,
       temperaments: newDogInput.temperaments.filter((temp) => temp !== tempId),
     });
+    setErrors(
+      validation({
+        ...newDogInput,
+        temperaments: newDogInput.temperaments.filter(
+          (temp) => temp !== tempId
+        ),
+      })
+    );
   };
 
   const handleSubmit = (ev) => {
@@ -76,21 +104,37 @@ function FormPage() {
             <label htmlFor="name">NOMBRE: </label>
             <br />
             <input type="text" name="name" onChange={handleInputChange} />
+            {errors.name && <p className={styles.errorsPs}>{errors.name}</p>}
             <br />
+
             <label>ALTURA: </label>
             <br />
             <label htmlFor="minHeight">Min.: </label>
             <input type="text" name="minHeight" onChange={handleInputChange} />
             <label htmlFor="maxHeight">Máx.: </label>
             <input type="text" name="maxHeight" onChange={handleInputChange} />
+            {errors.minHeight && (
+              <p className={styles.errorsPs}>{errors.minHeight}</p>
+            )}
+            {errors.maxHeight && (
+              <p className={styles.errorsPs}>{errors.maxHeight}</p>
+            )}
             <br />
+
             <label>PESO: </label>
             <br />
             <label htmlFor="minWeight">Min.: </label>
             <input type="text" name="minWeight" onChange={handleInputChange} />
             <label htmlFor="maxWeight">Máx.: </label>
             <input type="text" name="maxWeight" onChange={handleInputChange} />
+            {errors.minWeight && (
+              <p className={styles.errorsPs}>{errors.minWeight}</p>
+            )}
+            {errors.maxWeight && (
+              <p className={styles.errorsPs}>{errors.maxWeight}</p>
+            )}
             <br />
+
             <label>ESPECTATIVA DE VIDA: </label>
             <br />
             <label htmlFor="minLife_span">Min.: </label>
@@ -105,11 +149,20 @@ function FormPage() {
               name="maxLife_span"
               onChange={handleInputChange}
             />
+            {errors.minLife_span && (
+              <p className={styles.errorsPs}>{errors.minLife_span}</p>
+            )}
+            {errors.maxLife_span && (
+              <p className={styles.errorsPs}>{errors.maxLife_span}</p>
+            )}
             <br />
+
             <label htmlFor="image">IMAGEN(URL): </label>
             <br />
             <input type="text" name="image" onChange={handleInputChange} />
+            {errors.image && <p className={styles.errorsPs}>{errors.image}</p>}
             <br />
+
             <label htmlFor="selecTemperaments">Temperamentos:</label>
             <select
               name="selecTemperaments"
@@ -127,6 +180,10 @@ function FormPage() {
                 );
               })}
             </select>
+            {errors.temperaments && (
+              <p className={styles.errorsPs}>{errors.temperaments}</p>
+            )}
+
             <div className={styles.temperamentsContent}>
               {newDogInput.temperaments.length
                 ? newDogInput.temperaments.map((temp) => (
@@ -144,7 +201,31 @@ function FormPage() {
                   ))
                 : null}
             </div>
-            <button type="submit">CREAR!</button>
+            <button
+              type="submit"
+              disabled={
+                !newDogInput.name ||
+                !newDogInput.minWeight ||
+                !newDogInput.maxHeight ||
+                !newDogInput.maxWeight ||
+                !newDogInput.minHeight ||
+                !newDogInput.minLife_span ||
+                !newDogInput.maxLife_span ||
+                !newDogInput.image ||
+                !newDogInput.temperaments.length ||
+                errors.name ||
+                errors.minWeight ||
+                errors.maxHeight ||
+                errors.maxWeight ||
+                errors.minHeight ||
+                errors.minLife_span ||
+                errors.maxLife_span ||
+                errors.image ||
+                errors.temperaments.length
+              }
+            >
+              CREAR!
+            </button>
           </form>
         </div>
       </div>

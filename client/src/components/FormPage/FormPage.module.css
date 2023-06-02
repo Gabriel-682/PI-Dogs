@@ -70,3 +70,7 @@
 .btnTemperamentShown:hover {
   background-color: crimson;
 }
+
+.errorsPs {
+  color: red;
+}
