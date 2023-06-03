@@ -2,11 +2,22 @@ const regexIsNumber = /^\d+$/;
 const regexUrl =
   /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_.~#?&//=]*)/;
 
-export default function validation(newDogInput) {
+export default function validation(newDogInput, allDogsNames) {
   let errors = {};
 
   if (newDogInput.name !== "") {
-    errors.name = "";
+    let nameSplited = newDogInput.name?.split(" ");
+    let nameUpper = nameSplited?.map((name) => {
+      return (name =
+        name.charAt(0).toUpperCase() + name.substring(1).toLowerCase());
+    });
+    let nameFixed = nameUpper?.join(" ");
+
+    if (allDogsNames?.includes(nameFixed)) {
+      errors.name = `La raza "${nameFixed}" ya existe.`;
+    } else {
+      errors.name = "";
+    }
   } else if (newDogInput.name === "") {
     errors.name = "Debe ingresar un nombre.";
   }

@@ -2,14 +2,16 @@ import styles from "./FormPage.module.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getTemperaments, postDog } from "../../redux/actions";
+import { getTemperaments, postDog, getAllDogs } from "../../redux/actions";
 import validation from "../../utils/validation";
 
 function FormPage() {
   const temperamentsState = useSelector((state) => state.temperaments);
   const newDataBaseDog = useSelector((state) => state.newDataBaseDog);
+  const dogsRender = useSelector((state) => state.dogsRender);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  let allDogsNames = [];
   const imageDefault =
     "https://freedesignfile.com/upload/2022/04/Dog-sticking-out-tongue-cartoon-vector.jpg";
   const [errors, setErrors] = useState({
@@ -36,22 +38,32 @@ function FormPage() {
   });
 
   const newDog = {
-    name: newDogInput.name,
+    name:
+      newDogInput.name?.charAt(0).toUpperCase() +
+      newDogInput.name?.substring(1).toLowerCase(),
     height: `${newDogInput.minHeight} - ${newDogInput.maxHeight}`,
     weight: `${newDogInput.minWeight} - ${newDogInput.maxWeight}`,
     life_span: `${newDogInput.minLife_span} - ${newDogInput.maxLife_span}`,
     image: newDogInput.image ? newDogInput.image : imageDefault,
-    temperaments: newDogInput.temperaments,
+    temperaments: [...new Set(newDogInput.temperaments)],
   };
 
   useEffect(() => {
     dispatch(getTemperaments());
+    dispatch(getAllDogs());
   }, [dispatch]); //BORRAR TODO ESTE USEEFFECT
+
+  dogsRender?.forEach((dog) => {
+    allDogsNames = [...allDogsNames, dog.name];
+  });
 
   const handleInputChange = (ev) => {
     setNewDogInput({ ...newDogInput, [ev.target.name]: ev.target.value });
     setErrors(
-      validation({ ...newDogInput, [ev.target.name]: ev.target.value })
+      validation(
+        { ...newDogInput, [ev.target.name]: ev.target.value },
+        allDogsNames
+      )
     );
   };
 
@@ -191,7 +203,10 @@ function FormPage() {
             <div className={styles.temperamentsContent}>
               {newDogInput.temperaments.length
                 ? newDogInput.temperaments.map((temp) => (
-                    <div key={temp} className={styles.temperamentShown}>
+                    <div
+                      key={Math.ceil(Math.random() * 125)}
+                      className={styles.temperamentShown}
+                    >
                       <div>
                         {temperamentsState.find((el) => el.id === temp).name}
                       </div>
@@ -224,7 +239,8 @@ function FormPage() {
                 errors.minLife_span ||
                 errors.maxLife_span ||
                 errors.image ||
-                errors.temperaments.length
+                errors.temperaments.length ||
+                newDataBaseDog.error
               }
             >
               CREAR!
@@ -233,6 +249,7 @@ function FormPage() {
         </div>
       </div>
       <button onClick={onClickHandlerBtnVolver}>VOLVER</button>
+
       <div>{newDataBaseDog.error ? newDataBaseDog.error : null}</div>
       {newDataBaseDog && !newDataBaseDog.error ? (
         <div>
