@@ -94,8 +94,6 @@ export default function validation(newDogInput, allDogsNames) {
     !regexUrl.test(newDogInput.image) && newDogInput.image !== undefined
       ? (errors.image = "La dirección ingresada no es una URL.")
       : (errors.image = "");
-  } else {
-    errors.image = "Debe ingresar una URL.";
   }
 
   if (newDogInput.temperaments.length) {

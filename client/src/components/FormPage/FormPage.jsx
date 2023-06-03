@@ -49,13 +49,15 @@ function FormPage() {
   };
 
   useEffect(() => {
-    dispatch(getTemperaments());
     dispatch(getAllDogs());
-  }, [dispatch]); //BORRAR TODO ESTE USEEFFECT
+    dispatch(getTemperaments());
+  }, [dispatch]);
 
-  dogsRender?.forEach((dog) => {
-    allDogsNames = [...allDogsNames, dog.name];
-  });
+  if (Array.isArray(dogsRender)) {
+    dogsRender.forEach((dog) => {
+      allDogsNames = [...allDogsNames, dog.name];
+    });
+  }
 
   const handleInputChange = (ev) => {
     setNewDogInput({ ...newDogInput, [ev.target.name]: ev.target.value });
