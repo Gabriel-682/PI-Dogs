@@ -25,7 +25,7 @@ const getAllDogs = async () => {
     return dog;
   });
 
-  const result = [...dataFixed, ...dogs];
+  const result = [...dogs, ...dataFixed];
   return result;
 };
 

@@ -31,6 +31,10 @@ export default function validation(newDogInput) {
     errors.maxHeight = 'Debe ingresar una "Altura Máxima".';
   }
 
+  if (Number(newDogInput.maxHeight) < Number(newDogInput.minHeight))
+    errors.maxHeight =
+      'La "Altura Máxima" debe ser mayor a la "Altura Mínima".';
+
   if (newDogInput.minWeight !== "") {
     !regexIsNumber.test(newDogInput.minWeight) &&
     newDogInput.minWeight !== undefined
@@ -51,6 +55,9 @@ export default function validation(newDogInput) {
     errors.maxWeight = 'Debe ingresar un "Peso Máximo".';
   }
 
+  if (Number(newDogInput.maxWeight) < Number(newDogInput.minWeight))
+    errors.maxWeight = 'El "Peso Máximo" debe ser mayor al "Peso Mínimo".';
+
   if (newDogInput.minLife_span !== "") {
     !regexIsNumber.test(newDogInput.minLife_span) &&
     newDogInput.minLife_span !== undefined
@@ -68,6 +75,9 @@ export default function validation(newDogInput) {
   } else {
     errors.maxLife_span = 'Debe ingresar un "Máximo".';
   }
+
+  if (Number(newDogInput.maxLife_span) < Number(newDogInput.minLife_span))
+    errors.maxLife_span = 'El "Máximo" debe ser mayor al "Mínimo".';
 
   if (newDogInput.image !== "") {
     !regexUrl.test(newDogInput.image) && newDogInput.image !== undefined

@@ -10,6 +10,8 @@ function FormPage() {
   const newDataBaseDog = useSelector((state) => state.newDataBaseDog);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const imageDefault =
+    "https://freedesignfile.com/upload/2022/04/Dog-sticking-out-tongue-cartoon-vector.jpg";
   const [errors, setErrors] = useState({
     name: "",
     minHeight: "",
@@ -38,7 +40,7 @@ function FormPage() {
     height: `${newDogInput.minHeight} - ${newDogInput.maxHeight}`,
     weight: `${newDogInput.minWeight} - ${newDogInput.maxWeight}`,
     life_span: `${newDogInput.minLife_span} - ${newDogInput.maxLife_span}`,
-    image: newDogInput.image,
+    image: newDogInput.image ? newDogInput.image : imageDefault,
     temperaments: newDogInput.temperaments,
   };
 
@@ -94,7 +96,9 @@ function FormPage() {
   return (
     <div className={styles.formPageContent}>
       <div className={styles.picFormContent}>
-        <div className={styles.image}></div>
+        <div className={styles.image}>
+          <img src={newDog.image} alt="Sin imagen para mostrar." />
+        </div>
         <div className={styles.form}>
           {/* Nombre. Altura (diferenciar entre altura mínima y máxima de la raza).
         Peso (diferenciar entre peso mínimo y máximo de la raza). Años de vida.
@@ -211,7 +215,6 @@ function FormPage() {
                 !newDogInput.minHeight ||
                 !newDogInput.minLife_span ||
                 !newDogInput.maxLife_span ||
-                !newDogInput.image ||
                 !newDogInput.temperaments.length ||
                 errors.name ||
                 errors.minWeight ||

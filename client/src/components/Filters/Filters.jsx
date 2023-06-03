@@ -10,6 +10,7 @@ import {
 function Filters() {
   const temperaments = useSelector((state) => state.temperaments);
   const dispatch = useDispatch();
+  const tempSelecValue = "default";
 
   const onChangeHandlerSource = async (ev) => {
     await dispatch(getAllDogs());
@@ -33,7 +34,7 @@ function Filters() {
     <div className="filtros">
       <label htmlFor="">FILTRAR POR: </label>
       <select
-        name="isApi - ver si sirve esta propiedad"
+        name="isApi"
         defaultValue={"default"}
         onChange={onChangeHandlerSource}
       >
@@ -45,7 +46,7 @@ function Filters() {
         <option value="dataBase">Creados</option>
       </select>
       <select
-        name="Temperamentos - ver si sirve esta propiedad"
+        name="temperamentos"
         defaultValue={"default"}
         onChange={onChangeHandlerTemperaments}
       >
@@ -63,11 +64,11 @@ function Filters() {
       </select>
       <label htmlFor="">ORDENAR POR:</label>
       <select
-        name="order - ver si sirve esta propiedad"
-        defaultValue={"default"}
+        name="order"
+        value={tempSelecValue}
         onChange={onChangeHandlerOrder}
       >
-        <option value="default">--selecciona--</option>
+        <option value="default">--seleccionar--</option>
         <option value="az">A-Z</option>
         <option value="za">Z-A</option>
         <option value="mayorPeso">Mayor peso</option>
