@@ -1,0 +1,26 @@
+.errorContent {
+  width: 100vw;
+  height: 100vh;
+  background-color: blueviolet;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.image {
+  width: 30%;
+  height: 50%;
+  background-image: url("../../images/dog-confused.gif");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.text {
+  font-size: 30px;
+}
+
+.btnHome {
+  background-color: blue;
+}
