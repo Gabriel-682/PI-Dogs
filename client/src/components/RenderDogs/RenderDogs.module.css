@@ -2,8 +2,15 @@
   width: 100%;
   height: 90%;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: red;
+}
+
+.dogRows {
+  display: flex;
   align-items: center;
   justify-content: space-evenly;
   flex-wrap: wrap;
-  background-color: red;
+  background-color: black;
 }

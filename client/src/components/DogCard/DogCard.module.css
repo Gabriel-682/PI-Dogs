@@ -1,7 +1,7 @@
 .dogContenedor {
   background-color: green;
-  width: 250px;
-  height: 250px;
+  width: 280px;
+  height: 370px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -9,8 +9,8 @@
   font-size: 12px;
   margin-top: 5px;
   margin-bottom: 5px;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
   border-radius: 20px;
 }
 
@@ -19,7 +19,8 @@
 }
 
 .dogImage {
-  width: 190px;
+  width: 230px;
+  height: 200px;
 }
 
 .name {
@@ -48,4 +49,5 @@ p {
   font-size: 9px;
   margin: 5px;
   text-decoration-line: none;
+  inline-size: 45px;
 }

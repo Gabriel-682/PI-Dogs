@@ -18,27 +18,45 @@ function RenderDogs() {
 
   return (
     <div>
-      <div className={styles.dogsContenedor}>
-        {dogsRender.error ? (
-          <div>
-            <div>{dogsRender.error}</div>
-            <button onClick={onClickHandlerBtnCreate}>CREAR!</button>
+      {dogsRender.error ? (
+        <div>
+          <div>{dogsRender.error}</div>
+          <button onClick={onClickHandlerBtnCreate}>CREAR!</button>
+        </div>
+      ) : (
+        <div className={styles.dogsContenedor}>
+          <div className={styles.dogRows}>
+            {dogsRender
+              .map((dog) => (
+                <DogCard
+                  key={dog.id}
+                  id={dog.id}
+                  image={dog.image}
+                  name={dog.name}
+                  temperament={dog.Temperaments}
+                  weight={dog.weight}
+                />
+              ))
+              .slice(firstIndex, lastIndex)
+              .slice(0, 4)}
           </div>
-        ) : (
-          dogsRender
-            .map((dog) => (
-              <DogCard
-                key={dog.id}
-                id={dog.id}
-                image={dog.image}
-                name={dog.name}
-                temperament={dog.Temperaments}
-                weight={dog.weight}
-              />
-            ))
-            .slice(firstIndex, lastIndex)
-        )}
-      </div>
+          <div className={styles.dogRows}>
+            {dogsRender
+              .map((dog) => (
+                <DogCard
+                  key={dog.id}
+                  id={dog.id}
+                  image={dog.image}
+                  name={dog.name}
+                  temperament={dog.Temperaments}
+                  weight={dog.weight}
+                />
+              ))
+              .slice(firstIndex, lastIndex)
+              .slice(4)}
+          </div>
+        </div>
+      )}
       <Pagination />
     </div>
   );
