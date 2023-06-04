@@ -1,3 +1,4 @@
+import styles from "./SearchBar.module.css";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { getDogByName, getAllDogs, setCurrentPage } from "../../redux/actions";
@@ -22,7 +23,7 @@ function SearchBar() {
   };
 
   return (
-    <div>
+    <div className={styles.searchBarContent}>
       {showInput ? (
         <div>
           <input
@@ -30,7 +31,7 @@ function SearchBar() {
             placeholder="Búsqueda por raza"
             onChange={onChangeHandler}
           />
-          <button onClick={() => onClickHandlerSearch(breed)}>BUSCAR!</button>
+          <button className={styles.btnSearch} onClick={() => onClickHandlerSearch(breed)}>BUSCAR!</button>
         </div>
       ) : null}
       <button onClick={onClickHandlerHide}>

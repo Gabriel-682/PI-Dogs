@@ -1,10 +1,10 @@
+import styles from "./Nav.module.css";
 import { Link } from "react-router-dom";
 import SearchBar from "../SearchBar/SearchBar";
 
 function Nav() {
   return (
-    <div>
-      <p>SOY LA NAV</p>
+    <div className={styles.nav}>
       <Link to={"/form"}>CREAR RAZA</Link>
       <SearchBar />
     </div>

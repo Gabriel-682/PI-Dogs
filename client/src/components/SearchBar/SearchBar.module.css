@@ -1,0 +1,9 @@
+.searchBarContent {
+  display: flex;
+  align-items: center;
+}
+.btnSearch {
+  color: red;
+  background-color: green;
+  animation-duration: 3s;
+}

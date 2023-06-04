@@ -1,3 +1,4 @@
+import styles from "./Filters.module.css"
 import { useDispatch, useSelector } from "react-redux";
 import {
   orderBy,
@@ -31,7 +32,7 @@ function Filters() {
   };
 
   return (
-    <div className="filtros">
+    <div className={styles.filters}>
       <label htmlFor="">FILTRAR POR: </label>
       <select
         name="isApi"

@@ -1,7 +1,14 @@
-.bntPageSelected {
-  background-color: blue;
+.paginationNav {
+  background-color: grey;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  right: 50%;
 }
 
-.paginationNav {
-  margin: 40px;
+.bntPageSelected {
+  background-color: blue;
 }
