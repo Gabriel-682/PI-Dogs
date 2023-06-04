@@ -113,116 +113,139 @@ function FormPage() {
         <div className={styles.image}>
           <img src={newDog.image} alt="Sin imagen para mostrar." />
         </div>
-        <div className={styles.form}>
-          {/* Nombre. Altura (diferenciar entre altura mínima y máxima de la raza).
-        Peso (diferenciar entre peso mínimo y máximo de la raza). Años de vida.
-        Posibilidad de seleccionar/agregar varios temperamentos en simultáneo.
-        Botón para crear la nueva raza. */}
-          <form onSubmit={handleSubmit}>
-            <label htmlFor="name">NOMBRE: </label>
-            <br />
-            <input type="text" name="name" onChange={handleInputChange} />
-            {errors.name && <p className={styles.errorsPs}>{errors.name}</p>}
-            <br />
+        <div className={styles.formContent}>
+          <form className={styles.form} onSubmit={handleSubmit}>
+            <div className={styles.inputs}>
+              <label htmlFor="name">NOMBRE: </label>
+              <input type="text" name="name" onChange={handleInputChange} />
+              {errors.name && <p className={styles.errorsPs}>{errors.name}</p>}
+            </div>
 
-            <label>ALTURA: </label>
-            <br />
-            <label htmlFor="minHeight">Min.: </label>
-            <input type="text" name="minHeight" onChange={handleInputChange} />
-            <label htmlFor="maxHeight">Máx.: </label>
-            <input type="text" name="maxHeight" onChange={handleInputChange} />
-            {errors.minHeight && (
-              <p className={styles.errorsPs}>{errors.minHeight}</p>
-            )}
-            {errors.maxHeight && (
-              <p className={styles.errorsPs}>{errors.maxHeight}</p>
-            )}
-            <br />
+            <div className={styles.inputs}>
+              <label>ALTURA: </label>
+              <div className={styles.numInputs}>
+                <label htmlFor="minHeight">Min.: </label>
+                <input
+                  type="text"
+                  name="minHeight"
+                  onChange={handleInputChange}
+                />
+                <label htmlFor="maxHeight">Máx.: </label>
+                <input
+                  type="text"
+                  name="maxHeight"
+                  onChange={handleInputChange}
+                />
+              </div>
+              {errors.minHeight && (
+                <p className={styles.errorsPs}>{errors.minHeight}</p>
+              )}
+              {errors.maxHeight && (
+                <p className={styles.errorsPs}>{errors.maxHeight}</p>
+              )}
+            </div>
 
-            <label>PESO: </label>
-            <br />
-            <label htmlFor="minWeight">Min.: </label>
-            <input type="text" name="minWeight" onChange={handleInputChange} />
-            <label htmlFor="maxWeight">Máx.: </label>
-            <input type="text" name="maxWeight" onChange={handleInputChange} />
-            {errors.minWeight && (
-              <p className={styles.errorsPs}>{errors.minWeight}</p>
-            )}
-            {errors.maxWeight && (
-              <p className={styles.errorsPs}>{errors.maxWeight}</p>
-            )}
-            <br />
+            <div className={styles.inputs}>
+              <label>PESO: </label>
+              <div className={styles.numInputs}>
+                <label htmlFor="minWeight">Min.: </label>
+                <input
+                  type="text"
+                  name="minWeight"
+                  onChange={handleInputChange}
+                />
+                <label htmlFor="maxWeight">Máx.: </label>
+                <input
+                  type="text"
+                  name="maxWeight"
+                  onChange={handleInputChange}
+                />
+              </div>
+              {errors.minWeight && (
+                <p className={styles.errorsPs}>{errors.minWeight}</p>
+              )}
+              {errors.maxWeight && (
+                <p className={styles.errorsPs}>{errors.maxWeight}</p>
+              )}
+            </div>
 
-            <label>ESPECTATIVA DE VIDA: </label>
-            <br />
-            <label htmlFor="minLife_span">Min.: </label>
-            <input
-              type="text"
-              name="minLife_span"
-              onChange={handleInputChange}
-            />
-            <label htmlFor="maxLife_span">Máx.: </label>
-            <input
-              type="text"
-              name="maxLife_span"
-              onChange={handleInputChange}
-            />
-            {errors.minLife_span && (
-              <p className={styles.errorsPs}>{errors.minLife_span}</p>
-            )}
-            {errors.maxLife_span && (
-              <p className={styles.errorsPs}>{errors.maxLife_span}</p>
-            )}
-            <br />
+            <div className={styles.inputs}>
+              <label>ESPECTATIVA DE VIDA: </label>
+              <div className={styles.numInputs}>
+                <label htmlFor="minLife_span">Min.: </label>
+                <input
+                  type="text"
+                  name="minLife_span"
+                  onChange={handleInputChange}
+                />
+                <label htmlFor="maxLife_span">Máx.: </label>
+                <input
+                  type="text"
+                  name="maxLife_span"
+                  onChange={handleInputChange}
+                />
+              </div>
+              {errors.minLife_span && (
+                <p className={styles.errorsPs}>{errors.minLife_span}</p>
+              )}
+              {errors.maxLife_span && (
+                <p className={styles.errorsPs}>{errors.maxLife_span}</p>
+              )}
+            </div>
 
-            <label htmlFor="image">IMAGEN(URL): </label>
-            <br />
-            <input type="text" name="image" onChange={handleInputChange} />
-            {errors.image && <p className={styles.errorsPs}>{errors.image}</p>}
-            <br />
+            <div className={styles.inputs}>
+              <label htmlFor="image">IMAGEN(URL): </label>
+              <input type="text" name="image" onChange={handleInputChange} />
+              {errors.image && (
+                <p className={styles.errorsPs}>{errors.image}</p>
+              )}
+            </div>
 
-            <label htmlFor="selecTemperaments">Temperamentos:</label>
-            <select
-              name="selecTemperaments"
-              defaultValue={"default"}
-              onChange={handleSelectChange}
-            >
-              <option value="default" disabled>
-                --seleccione--
-              </option>
-              {temperamentsState?.map((temp) => {
-                return (
-                  <option key={temp.id} value={temp.id}>
-                    {temp.name}
-                  </option>
-                );
-              })}
-            </select>
-            {errors.temperaments && (
-              <p className={styles.errorsPs}>{errors.temperaments}</p>
-            )}
+            <div className={styles.tempDiv}>
+              <label htmlFor="selecTemperaments">Temperamentos:</label>
+              <select
+                name="selecTemperaments"
+                defaultValue={"default"}
+                onChange={handleSelectChange}
+              >
+                <option value="default" disabled>
+                  --seleccione--
+                </option>
+                {temperamentsState?.map((temp) => {
+                  return (
+                    <option key={temp.id} value={temp.id}>
+                      {temp.name}
+                    </option>
+                  );
+                })}
+              </select>
+              {errors.temperaments && (
+                <p className={styles.errorsPs}>{errors.temperaments}</p>
+              )}
 
-            <div className={styles.temperamentsContent}>
-              {newDogInput.temperaments.length
-                ? newDogInput.temperaments.map((temp) => (
-                    <div
-                      key={Math.ceil(Math.random() * 125)}
-                      className={styles.temperamentShown}
-                    >
-                      <div>
-                        {temperamentsState.find((el) => el.id === temp).name}
-                      </div>
-                      <button
-                        className={styles.btnTemperamentShown}
-                        onClick={(ev) => deleteTemperament(ev, temp)}
+              <div className={styles.temperamentsContent}>
+                {newDogInput.temperaments.length
+                  ? newDogInput.temperaments.map((temp) => (
+                      <div
+                        key={Math.ceil(Math.random() * 125)}
+                        className={styles.temperamentShown}
                       >
-                        X
-                      </button>
-                    </div>
-                  ))
-                : null}
+                        <div>
+                          {temperamentsState.find((el) => el.id === temp).name}
+                        </div>
+                        <button
+                          className={styles.btnTemperamentShown}
+                          onClick={(ev) => deleteTemperament(ev, temp)}
+                        >
+                          X
+                        </button>
+                      </div>
+                    ))
+                  : null}
+              </div>
             </div>
             <button
+              className={styles.btnCrear}
               type="submit"
               disabled={
                 !newDogInput.name ||
@@ -250,7 +273,9 @@ function FormPage() {
           </form>
         </div>
       </div>
-      <button onClick={onClickHandlerBtnVolver}>VOLVER</button>
+      <button className={styles.btnVolver} onClick={onClickHandlerBtnVolver}>
+        VOLVER
+      </button>
 
       <div>{newDataBaseDog.error ? newDataBaseDog.error : null}</div>
       {newDataBaseDog && !newDataBaseDog.error ? (
