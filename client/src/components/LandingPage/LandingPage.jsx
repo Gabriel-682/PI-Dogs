@@ -12,8 +12,13 @@ function LandingPage() {
       <div className={styles.landingPageContent}>
         <div className={styles.img}></div>
         <div className={styles.welcome}>
-          <h1>BIENVENIDO</h1>
-          <button onClick={onClickHandler}>HOME</button>
+          <h1 className={styles.welcomeTitle}>BIENVENIDO</h1>
+          <p className={styles.welcomeText}>
+            En nuestra web podrás consultar detalles sobre las razas de perros
+            existentes. Si crees que falta alguna, podrás crear tu raza
+            personalizada!
+          </p>
+          <button className={styles.btnIngresar} onClick={onClickHandler}>INGRESAR !</button>
         </div>
       </div>
     </div>

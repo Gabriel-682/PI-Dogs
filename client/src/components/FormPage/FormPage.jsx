@@ -101,6 +101,8 @@ function FormPage() {
   const handleSubmit = (ev) => {
     ev.preventDefault();
     dispatch(postDog(newDog));
+    alert("La raza ha sido creada correctamente.");
+    navigate("/home");
   };
 
   const onClickHandlerBtnVolver = () => {
@@ -280,17 +282,7 @@ function FormPage() {
       <button className={styles.btnVolver} onClick={onClickHandlerBtnVolver}>
         VOLVER
       </button>
-
-      <div>{newDataBaseDog.error ? newDataBaseDog.error : null}</div>
-      {newDataBaseDog && !newDataBaseDog.error ? (
-        <div>
-          <p>{newDataBaseDog.name}</p>
-          <p>{newDataBaseDog.height}</p>
-          <p>{newDataBaseDog.weight}</p>
-          <p>{newDataBaseDog.life_span}</p>
-          <p>{newDataBaseDog.image}</p>
-        </div>
-      ) : null}
+      {newDataBaseDog.error ? <div>{newDataBaseDog.error}</div> : null}
     </div>
   );
 }
