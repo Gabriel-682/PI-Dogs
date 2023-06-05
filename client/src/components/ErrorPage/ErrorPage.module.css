@@ -1,7 +1,10 @@
 .errorContent {
   width: 100vw;
   height: 100vh;
-  background-color: blueviolet;
+  background-image: url(../../images/Fondo\ II.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,12 +18,27 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  border-radius: 20px;
 }
 
 .text {
-  font-size: 30px;
+  font-size: 50px;
+  color: white;
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+  margin: 20px;
 }
 
 .btnHome {
-  background-color: blue;
+  font-size: 20px;
+  border-radius: 15px;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  margin-top: 5px;
+}
+
+.btnHome:hover {
+  transform: scale(1.1);
+  background-color: white;
+  color: black;
 }
