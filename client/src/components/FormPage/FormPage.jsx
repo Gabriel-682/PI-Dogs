@@ -220,7 +220,7 @@ function FormPage() {
 
             <div className={styles.inputs}>
               <label className={styles.labels} htmlFor="image">
-                IMAGEN(URL):{" "}
+                IMAGEN-URL (OPCIONAL):
               </label>
               <input
                 className={styles.largeInput}
