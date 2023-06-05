@@ -1,7 +1,10 @@
 .formPageContent {
   height: 100vh;
   width: 100vw;
-  background-color: grey;
+  background-image: url(../../images/Fondo\ II.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -9,7 +12,6 @@
 }
 
 .picFormContent {
-  background-color: chartreuse;
   width: 70%;
   height: 80%;
   display: flex;
@@ -17,11 +19,15 @@
   justify-content: center;
   margin-bottom: 80px;
   border-radius: 50px;
-  margin-bottom: 15px;
+  margin-bottom: 5px;
+  background-image: url(../../images/Fondo\ III.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 .image {
-  border: solid 1px blue;
+  border: solid 1px black;
   width: 50%;
   height: 100%;
   display: flex;
@@ -37,22 +43,42 @@
 }
 
 .formContent {
-  border: solid 1px blue;
+  border: solid 1px black;
   width: 50%;
   height: 100%;
-  background-color: blue;
   border-radius: 0px 50px 50px 0px;
 }
 
 .form {
-  border: solid 1px blue;
+  border: solid 1px black;
   width: 100%;
   height: 100%;
-  background-color: blue;
   display: flex;
   flex-direction: column;
   align-items: center;
   border-radius: 0px 50px 50px 0px;
+}
+
+.labels {
+  font-size: 20px;
+  color: white;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.labelsSmall {
+  font-size: 18px;
+  margin-right: 10px;
+  color: white;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.largeInput {
+  width: 90%;
+}
+
+.selectTempForm {
+  font-size: 18px;
+  margin-bottom: 5px;
 }
 
 .temperamentsContent {
@@ -61,7 +87,8 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  background-color: orange;
+  background-color: white;
+  border-radius: 20px;
   overflow: hidden;
 }
 
@@ -75,8 +102,10 @@
   align-items: center;
   border: solid black 1px;
   border-radius: 10px;
-  background-color: blueviolet;
-  font-size: 12px;
+  background-color: grey;
+  color: white;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  font-size: 16px;
 }
 
 .temperamentShown:hover {
@@ -92,20 +121,28 @@
 }
 
 .btnTemperamentShown:hover {
-  background-color: crimson;
+  background-color: red;
 }
 
 .errorsPs {
   color: red;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  margin: 0;
 }
 
-.btnVolver {
-  color: green;
-  background-color: blue;
+.btnDir {
+  font-size: 20px;
+  border-radius: 15px;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  margin-top: 5px;
 }
 
-.btnCrear {
-  margin: 8px;
+.btnDir:hover {
+  transform: scale(1.1);
+  background-color: white;
+  color: black;
 }
 
 .inputs {
@@ -113,8 +150,8 @@
   flex-direction: column;
   align-items: center;
   margin-top: 20px;
-  background-color: white;
   height: auto;
+  width: 90%;
 }
 
 .numInputs {
@@ -123,7 +160,7 @@
 
 .tempDiv {
   width: 90%;
-  height: 40%;
+  height: 36%;
   display: flex;
   flex-direction: column;
   align-items: center;

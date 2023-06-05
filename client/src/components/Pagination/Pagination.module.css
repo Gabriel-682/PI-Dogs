@@ -20,6 +20,21 @@
   margin-right: 2px;
 }
 
+.btnStandar:hover {
+  transform: scale(1.05);
+}
+
+.btnStandar:disabled{
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.618);
+  border-radius: 15px;
+  border: none;
+  background-color: rgba(0, 0, 0, 0.327);
+  cursor: not-allowed;
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
 .bntPageSelected {
   font-size: 20px;
   color: black;
@@ -29,4 +44,8 @@
   cursor: pointer;
   margin-left: 2px;
   margin-right: 2px;
+}
+
+.bntPageSelected:hover {
+  transform: scale(1.05);
 }

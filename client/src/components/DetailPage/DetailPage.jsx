@@ -42,7 +42,7 @@ function DetailPage() {
             <div className={styles.temperamentsDiv}>
               {dogsRender.Temperaments?.map((temp) => {
                 return (
-                  <p className={styles.dataString} key={temp.name}>
+                  <p className={styles.TempDataString} key={temp.name}>
                     {temp.name}
                   </p>
                 );

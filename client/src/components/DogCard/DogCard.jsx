@@ -7,8 +7,8 @@ function DogCard({ id, image, name, temperament, weight }) {
       <div className={styles.dogContenedor}>
         <img className={styles.dogImage} src={image} alt="Dog" />
         <p className={styles.name}>{name}</p>
-        <p>{`Peso: ${weight}`}</p>
-        <p>Temperaments:</p>
+        <p className={styles.dataCard}>{`Peso: ${weight}`}</p>
+        <p className={styles.dataCard}>Temperaments:</p>
         <div className={styles.temperamentList}>
           {temperament?.map((temp) => (
             <p key={temp.name} className={styles.tempFont}>{`${temp.name} `}</p>

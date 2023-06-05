@@ -122,21 +122,32 @@ function FormPage() {
         <div className={styles.formContent}>
           <form className={styles.form} onSubmit={handleSubmit}>
             <div className={styles.inputs}>
-              <label htmlFor="name">NOMBRE: </label>
-              <input type="text" name="name" onChange={handleInputChange} />
+              <label className={styles.labels} htmlFor="name">
+                NOMBRE:{" "}
+              </label>
+              <input
+                className={styles.largeInput}
+                type="text"
+                name="name"
+                onChange={handleInputChange}
+              />
               {errors.name && <p className={styles.errorsPs}>{errors.name}</p>}
             </div>
 
             <div className={styles.inputs}>
-              <label>ALTURA: </label>
+              <label className={styles.labels}>ALTURA: </label>
               <div className={styles.numInputs}>
-                <label htmlFor="minHeight">Min.: </label>
+                <label className={styles.labelsSmall} htmlFor="minHeight">
+                  Min.:{" "}
+                </label>
                 <input
                   type="text"
                   name="minHeight"
                   onChange={handleInputChange}
                 />
-                <label htmlFor="maxHeight">Máx.: </label>
+                <label className={styles.labelsSmall} htmlFor="maxHeight">
+                  Máx.:{" "}
+                </label>
                 <input
                   type="text"
                   name="maxHeight"
@@ -152,15 +163,19 @@ function FormPage() {
             </div>
 
             <div className={styles.inputs}>
-              <label>PESO: </label>
+              <label className={styles.labels}>PESO: </label>
               <div className={styles.numInputs}>
-                <label htmlFor="minWeight">Min.: </label>
+                <label className={styles.labelsSmall} htmlFor="minWeight">
+                  Min.:{" "}
+                </label>
                 <input
                   type="text"
                   name="minWeight"
                   onChange={handleInputChange}
                 />
-                <label htmlFor="maxWeight">Máx.: </label>
+                <label className={styles.labelsSmall} htmlFor="maxWeight">
+                  Máx.:{" "}
+                </label>
                 <input
                   type="text"
                   name="maxWeight"
@@ -176,15 +191,19 @@ function FormPage() {
             </div>
 
             <div className={styles.inputs}>
-              <label>ESPECTATIVA DE VIDA: </label>
+              <label className={styles.labels}>ESPECTATIVA DE VIDA: </label>
               <div className={styles.numInputs}>
-                <label htmlFor="minLife_span">Min.: </label>
+                <label className={styles.labelsSmall} htmlFor="minLife_span">
+                  Min.:{" "}
+                </label>
                 <input
                   type="text"
                   name="minLife_span"
                   onChange={handleInputChange}
                 />
-                <label htmlFor="maxLife_span">Máx.: </label>
+                <label className={styles.labelsSmall} htmlFor="maxLife_span">
+                  Máx.:{" "}
+                </label>
                 <input
                   type="text"
                   name="maxLife_span"
@@ -200,16 +219,26 @@ function FormPage() {
             </div>
 
             <div className={styles.inputs}>
-              <label htmlFor="image">IMAGEN(URL): </label>
-              <input type="text" name="image" onChange={handleInputChange} />
+              <label className={styles.labels} htmlFor="image">
+                IMAGEN(URL):{" "}
+              </label>
+              <input
+                className={styles.largeInput}
+                type="text"
+                name="image"
+                onChange={handleInputChange}
+              />
               {errors.image && (
                 <p className={styles.errorsPs}>{errors.image}</p>
               )}
             </div>
 
             <div className={styles.tempDiv}>
-              <label htmlFor="selecTemperaments">Temperamentos:</label>
+              <label className={styles.labels} htmlFor="selecTemperaments">
+                TEMPERAMENTOS:
+              </label>
               <select
+              className={styles.selectTempForm}
                 name="selecTemperaments"
                 defaultValue={"default"}
                 onChange={handleSelectChange}
@@ -251,7 +280,7 @@ function FormPage() {
               </div>
             </div>
             <button
-              className={styles.btnCrear}
+              className={styles.btnDir}
               type="submit"
               disabled={
                 !newDogInput.name ||
@@ -279,7 +308,7 @@ function FormPage() {
           </form>
         </div>
       </div>
-      <button className={styles.btnVolver} onClick={onClickHandlerBtnVolver}>
+      <button className={styles.btnDir} onClick={onClickHandlerBtnVolver}>
         VOLVER
       </button>
       {newDataBaseDog.error ? <div>{newDataBaseDog.error}</div> : null}

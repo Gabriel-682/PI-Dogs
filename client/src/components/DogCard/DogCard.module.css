@@ -1,6 +1,5 @@
 .dogContenedor {
-  background-color: green;
-  width: 260px;
+  width: 250px;
   height: 310px;
   display: flex;
   flex-direction: column;
@@ -12,6 +11,11 @@
   margin-left: 20px;
   margin-right: 20px;
   border-radius: 20px;
+  background-image: url("../../images/Fondo\ III.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  box-shadow: 2px 2px 2px 1px black;
 }
 
 .dogContenedor:hover {
@@ -21,20 +25,27 @@
 .dogImage {
   width: 220px;
   height: 150px;
-  /* border-radius: 20px; */
+  border-radius: 20px;
+  border: solid black 1px;
 }
 
 .name {
+  color: white;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
   font-size: 19px;
+  margin: 4px;
 }
 
-p {
+.dataCard {
+  color: white;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  font-size: 15px;
   margin: 4px;
-  text-decoration-line: none;
 }
 
 .temperamentList {
-  background-color: lightblue;
+  background-color: white;
+  border: solid black 1px;
   width: 220px;
   height: 60px;
   display: flex;
@@ -49,6 +60,6 @@ p {
 .tempFont {
   font-size: 9px;
   margin: 5px;
-  text-decoration-line: none;
   inline-size: 45px;
+  color: black;
 }
