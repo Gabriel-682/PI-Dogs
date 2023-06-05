@@ -25,16 +25,22 @@ function SearchBar() {
   return (
     <div className={styles.searchBarContent}>
       {showInput ? (
-        <div>
+        <div className={styles.searchInput}>
           <input
+            className={styles.inputSearch}
             type="text"
             placeholder="Búsqueda por raza"
             onChange={onChangeHandler}
           />
-          <button className={styles.btnSearch} onClick={() => onClickHandlerSearch(breed)}>BUSCAR!</button>
+          <button
+            className={styles.btnSearch}
+            onClick={() => onClickHandlerSearch(breed)}
+          >
+            BUSCAR !
+          </button>
         </div>
       ) : null}
-      <button onClick={onClickHandlerHide}>
+      <button className={styles.btnSearch} onClick={onClickHandlerHide}>
         {showInput ? "RESET" : "BUSCAR"}
       </button>
     </div>

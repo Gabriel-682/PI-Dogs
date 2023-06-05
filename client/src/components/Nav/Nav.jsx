@@ -5,7 +5,21 @@ import SearchBar from "../SearchBar/SearchBar";
 function Nav() {
   return (
     <div className={styles.nav}>
-      <Link to={"/form"}>CREAR RAZA</Link>
+      <Link
+        className={styles.navLink}
+        style={{ textDecoration: "none" }}
+        to={"/"}
+      >
+        PORTADA
+      </Link>
+      <Link
+        className={styles.navLink}
+        style={{ textDecoration: "none" }}
+        to={"/form"}
+      >
+        CREAR RAZA
+      </Link>
+
       <SearchBar />
     </div>
   );

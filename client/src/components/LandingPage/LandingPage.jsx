@@ -16,7 +16,7 @@ function LandingPage() {
           <p className={styles.welcomeText}>
             En nuestra web podrás consultar detalles sobre las razas de perros
             existentes. Si crees que falta alguna, podrás crear tu raza
-            personalizada!
+            personalizada !
           </p>
           <button className={styles.btnIngresar} onClick={onClickHandler}>INGRESAR !</button>
         </div>

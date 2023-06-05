@@ -1,7 +1,10 @@
 .homePageContent {
   width: 100vw;
   height: 100vh;
-  background-color: yellow;
   display: flex;
   flex-direction: column;
+  background-image: url(../../images/Fondo\ II.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
