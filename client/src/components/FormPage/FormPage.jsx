@@ -238,7 +238,7 @@ function FormPage() {
                 TEMPERAMENTOS:
               </label>
               <select
-              className={styles.selectTempForm}
+                className={styles.selectTempForm}
                 name="selecTemperaments"
                 defaultValue={"default"}
                 onChange={handleSelectChange}
@@ -280,7 +280,7 @@ function FormPage() {
               </div>
             </div>
             <button
-              className={styles.btnDir}
+              className={styles.btnCrear}
               type="submit"
               disabled={
                 !newDogInput.name ||
@@ -308,7 +308,7 @@ function FormPage() {
           </form>
         </div>
       </div>
-      <button className={styles.btnDir} onClick={onClickHandlerBtnVolver}>
+      <button className={styles.btnVolver} onClick={onClickHandlerBtnVolver}>
         VOLVER
       </button>
       {newDataBaseDog.error ? <div>{newDataBaseDog.error}</div> : null}

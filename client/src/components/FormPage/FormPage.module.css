@@ -132,7 +132,26 @@
   margin: 0;
 }
 
-.btnDir {
+.btnCrear {
+  font-size: 20px;
+  border-radius: 15px;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  margin-top: 5px;
+}
+
+.btnCrear:disabled {
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.618);
+  border-radius: 15px;
+  border: none;
+  background-color: rgba(0, 0, 0, 0.327);
+  cursor: not-allowed;
+  margin-top: 5px;
+}
+
+.btnVolver {
   font-size: 20px;
   border-radius: 15px;
   background-color: black;
