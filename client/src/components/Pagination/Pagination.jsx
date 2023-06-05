@@ -29,6 +29,7 @@ function Pagination() {
   return (
     <nav className={styles.paginationNav}>
       <button
+        className={styles.btnStandar}
         onClick={onPreviusPage}
         disabled={currentPage === 1 ? true : false}
       >
@@ -37,7 +38,7 @@ function Pagination() {
       {pageNumbers.map((numPage) => (
         <button
           className={
-            numPage === currentPage ? styles.bntPageSelected : undefined
+            numPage === currentPage ? styles.bntPageSelected : styles.btnStandar
           }
           onClick={() => onSpecificPage(numPage)}
           key={numPage}
@@ -46,6 +47,7 @@ function Pagination() {
         </button>
       ))}
       <button
+        className={styles.btnStandar}
         onClick={onNextPage}
         disabled={currentPage >= pageNumbers.length ? true : false}
       >

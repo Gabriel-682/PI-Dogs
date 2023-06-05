@@ -17,9 +17,9 @@ function RenderDogs() {
   };
 
   return (
-    <div>
+    <div className={styles.renderDogs}>
       {dogsRender.error ? (
-        <div>
+        <div className={styles.renderError}>
           <div>{dogsRender.error}</div>
           <button onClick={onClickHandlerBtnCreate}>CREAR!</button>
         </div>

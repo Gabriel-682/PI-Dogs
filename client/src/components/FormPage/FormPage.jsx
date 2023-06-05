@@ -111,7 +111,11 @@ function FormPage() {
     <div className={styles.formPageContent}>
       <div className={styles.picFormContent}>
         <div className={styles.image}>
-          <img src={newDog.image} alt="Sin imagen para mostrar." />
+          <img
+            className={styles.defaultImage}
+            src={newDog.image}
+            alt="Sin imagen para mostrar."
+          />
         </div>
         <div className={styles.formContent}>
           <form className={styles.form} onSubmit={handleSubmit}>
