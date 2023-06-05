@@ -1,7 +1,7 @@
 import "./App.css";
 import LandingPage from "./components/LandingPage/LandingPage";
 import HomePage from "./components/HomePage/HomePage";
-import DetailPage from "./components/DetailPage/DetalPage";
+import DetailPage from "./components/DetailPage/DetailPage";
 import FormPage from "./components/FormPage/FormPage";
 import ErrorPage from "./components/ErrorPage/ErrorPage";
 import { Routes, Route } from "react-router-dom";

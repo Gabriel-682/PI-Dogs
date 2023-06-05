@@ -21,7 +21,7 @@ function RenderDogs() {
       {dogsRender.error ? (
         <div className={styles.renderError}>
           <div>{dogsRender.error}</div>
-          <button onClick={onClickHandlerBtnCreate}>CREAR!</button>
+          <button className={styles.btnError} onClick={onClickHandlerBtnCreate}>CREAR!</button>
         </div>
       ) : (
         <div className={styles.dogsContenedor}>
