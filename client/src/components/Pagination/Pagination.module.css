@@ -10,14 +10,23 @@
 }
 
 .btnStandar {
-  border-radius: 20px;
-  font-size: 18px;
+  font-size: 20px;
+  color: white;
+  border-radius: 15px;
+  border: none;
+  background-color: black;
   cursor: pointer;
+  margin-left: 2px;
+  margin-right: 2px;
 }
 
 .bntPageSelected {
-  border-radius: 20px;
-  font-size: 18px;
+  font-size: 20px;
+  color: black;
+  border-radius: 15px;
+  border: solid black 1px;
+  background-color: white;
   cursor: pointer;
-  background-color: grey;
+  margin-left: 2px;
+  margin-right: 2px;
 }

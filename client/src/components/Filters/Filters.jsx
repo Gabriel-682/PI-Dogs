@@ -1,4 +1,4 @@
-import styles from "./Filters.module.css"
+import styles from "./Filters.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
   orderBy,
@@ -33,8 +33,9 @@ function Filters() {
 
   return (
     <div className={styles.filters}>
-      <label htmlFor="">FILTRAR POR: </label>
+      <label className={styles.labelFilters}>FILTRAR POR: </label>
       <select
+        className={styles.filtersSelecs}
         name="isApi"
         defaultValue={"default"}
         onChange={onChangeHandlerSource}
@@ -47,6 +48,7 @@ function Filters() {
         <option value="dataBase">Creados</option>
       </select>
       <select
+        className={styles.filtersSelecs}
         name="temperamentos"
         defaultValue={"default"}
         onChange={onChangeHandlerTemperaments}
@@ -63,8 +65,9 @@ function Filters() {
           );
         })}
       </select>
-      <label htmlFor="">ORDENAR POR:</label>
+      <label className={styles.labelFilters}>ORDENAR POR:</label>
       <select
+        className={styles.filtersSelecs}
         name="order"
         value={tempSelecValue}
         onChange={onChangeHandlerOrder}
