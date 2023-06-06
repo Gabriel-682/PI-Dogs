@@ -21,6 +21,7 @@ export const getAllDogs = () => {
       });
     } catch (error) {
       console.log(error);
+      alert(error);
     }
   };
 };
@@ -54,6 +55,7 @@ export const getDetail = (id) => {
       });
     } catch (error) {
       console.log(error.response.data);
+      alert(JSON.stringify(error.response.data.error));
     }
   };
 };
@@ -68,6 +70,7 @@ export const getTemperaments = () => {
       });
     } catch (error) {
       console.log(error.response.data);
+      alert("Temperaments Load Failed \n" + error);
     }
   };
 };
