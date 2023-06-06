@@ -84,10 +84,8 @@ export const postDog = (newDog) => {
         payload: data,
       });
     } catch (error) {
-      return dispatch({
-        type: POST_DOG,
-        payload: error.response.data,
-      });
+      console.log(error.response.data);
+      alert(JSON.stringify(error.response.data.error));
     }
   };
 };
